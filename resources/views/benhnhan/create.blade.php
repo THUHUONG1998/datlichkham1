@@ -97,52 +97,10 @@ Thêm một bệnh nhân mới
                                                         <input type="text" class="form-control" placeholder="Nhập địa chỉ thường trú..." name="diachi" value="" > </div>
                                                 </div>
                                             </div>
-                                            <h3 class="form-section">Thông tin đặt lịch</h3>
+                                           
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Ngày Khám</label>
-                                                        <input class="form-control" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  />
-                                                        <!-- <input name = "ng" type="text" class="form-control" placeholder="dd/mm/yyyy"> </div> -->
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Bệnh viện</label>
-                                                                <select name="id_benhvien" class="form-control">
-                                                                    <option value="">--Chọn bệnh viện--</option>
-                                                                    @foreach($benhvien as $value)
-                                                                    <option value="{{$value->id}}">{{$value->tenbenhvien}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Chuyên Khoa</label>
-                                                                <select name="id_chuyenkhoa" class="form-control">
-                                                                    <option value="">--Chọn chuyên khoa--</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Khung giờ</label>
-                                                                <select name="id_khunggio" class="form-control">
-                                                                    <option value="" default>--Chọn khung giờ--</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Bác sĩ</label>
-                                                                <select name="id_bacsi" class="form-control">
-                                                                <option value="" default>--Chọn bác sĩ--</option>
-                                                                   
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="pull-right">
@@ -270,5 +228,5 @@ $('#ngaykham').datepicker({
       return [(day!=0)]; //khong lay chu nhat
     },
   });
-  </script>
+</script>
 @endsection

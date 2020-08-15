@@ -22,16 +22,8 @@ class Benhnhan extends Migration
             $table->string('sodienthoai');
             $table->string('email');
             $table->string('diachi');
-            $table->unsignedBigInteger('id_benhvien'); // khai báo khóa ngoại
-            $table->foreign('id_benhvien')->references('id')->on('benhvien'); 
-            $table->unsignedBigInteger('id_khunggio'); //Kiểu int
-            $table->foreign('id_khunggio')->references('id')->on('khunggio');
-            $table->unsignedBigInteger('id_bacsi'); //Kiểu int
-            $table->foreign('id_bacsi')->references('id')->on('bacsi');
             $table->unsignedBigInteger('id_user'); 
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_chuyenkhoa'); 
-            $table->foreign('id_chuyenkhoa')->references('id')->on('chuyenkhoa');
             $table->timestamps(); //Tự cập nhật thời gian
             });
     }

@@ -17,9 +17,6 @@ class Chitietbenhnhan extends Migration
             $table->bigIncrements('id'); //Tự tăng, khóa chính
             $table->string('hovaten'); //Kiểu chuỗi
             $table->date('ngaykham'); //Kiểu chuỗi
-            $table->string('chitiet');
-            $table->string('trieuchung');
-            $table->string('donthuoc');
             $table->unsignedBigInteger('id_benhnhan'); //Kiểu int
             $table->foreign('id_benhnhan')->references('id')->on('benhnhan');
             $table->unsignedBigInteger('id_bacsi'); //Kiểu int

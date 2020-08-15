@@ -1,99 +1,264 @@
 @extends('pages.layout.layouts')
-
+@section('title')
+Thêm một bệnh nhân mới
+@endsection
 @section('content')
-<div class="page-content-wrapper">
-<div class="page-content">
-<div class="row">
-        <div class="col-md-12">
-            <div class="tabbable-line boxless tabbable-reversed">
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab_0">
-                        <div class="portlet box green">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class="fa fa-gift"></i> </div>
+    <div class="page-content-wrapper">
+                <div class="page-content">
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>Form Layouts
+                                <small>form layouts</small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                        <!-- BEGIN PAGE TOOLBAR -->
+                        <div class="page-toolbar">
+                            <!-- BEGIN THEME PANEL -->
+                            <div class="btn-group btn-theme-panel">
+                                <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-settings"></i>
+                                </a>
                             </div>
-                            <div class="portlet-body form">
-                             
-                               <form action="{{route('guimail', $benhnhan->id)}}" method="post" class="horizontal-form">
-                               @csrf
-                                    <div class="form-body">
-                                        <h3 class="form-section">Person Info</h3>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Họ và tên</label>
-                                                    <input value="{{$benhnhan->hovaten}}" name = "hovaten"  type="text" id="username" class="form-control" placeholder="Username" value="{{old('username')}}">
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tabbable-line boxless tabbable-reversed">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_0">
+                                        <div class="portlet box green">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <i class="fa fa-gift"></i>Form Actions On Bottom </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="collapse"> </a>
+                                                    <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                                                    <a href="javascript:;" class="reload"> </a>
+                                                    <a href="javascript:;" class="remove"> </a>
                                                 </div>
-                                                
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label  class="control-label">Ngày sinh</label>
-                                                    <input value="{{$benhnhan->ngaysinh}}" name="ngaysinh" type="text" id="hovaten" class="form-control" placeholder="Họ và Tên" value="{{old('hovaten')}}">
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label  class="control-label">Số điện thoại</label>
-                                                    <input  value="{{$benhnhan->sodienthoai}}" name="sodienthoai" type="text" id="sodienthoai" class="form-control" placeholder="Nhập Số điện thoại" value="{{old('sodienthoai')}}">
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label  class="control-label">Email</label>
-                                                    <input value="{{$benhnhan->email}}" name="email" type="text" id="manhanvien" class="form-control" placeholder="Danh số" value= "{{old('manhanvien')}}">
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label  class="control-label">Ngày khám</label>
-                                                    <input value="{{$benhnhan->ngaykham}}" name="ngaykham" type="text" id="lastName" class="form-control" placeholder="Nhập Email" value= "{{old('email')}}">
-                                                </div>
-                                               
+                                            <div class="portlet-body form">
+                                                <form action="{{route('guimail', $chitietbenhnhan->id)}}" class="form-horizontal" method="post">
+                                                @csrf
+                                                    <div class="form-body">
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Họ và tên</label>
+                                                            <div class="col-md-4">
+                                                                <input value="{{$chitietbenhnhan->hovaten}}" name="hovaten" type="text" class="form-control spinner" placeholder="Họ và tên bệnh nhân"> </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Địa chỉ</label>
+                                                            <div class="col-md-4">
+                                                                <input  value="{{$chitietbenhnhan->benhnhan->diachi}}" name="diachi" type="text" class="form-control spinner" placeholder="Địa chỉ"> </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Email</label>
+                                                            <div class="col-md-4">
+                                                                <input value="{{$chitietbenhnhan->benhnhan->email}}" name="email" type="email" class="form-control spinner" placeholder="Email"> </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Số điện thoại</label>
+                                                            <div class="col-md-4">
+                                                                <input  value="{{$chitietbenhnhan->benhnhan->ngaykham}}" name= "sodienthoai" type="text" class="form-control spinner" placeholder="Số điện thoại"> </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Ngày sinh</label>
+                                                            <div class="col-md-4">
+                                                            <input  value="{{$chitietbenhnhan->benhnhan->ngaysinh}}" class="form-control spinner" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Ngày khám</label>
+                                                            <div class="col-md-4">
+                                                            <input value="{{$chitietbenhnhan->ngaykham}}" class="form-control spinner" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  /></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Bệnh viện</label>
+                                                            <div class="col-md-4">
+                                                            <select name="id_benhvien" class="form-control">
+                                                                    <option value="">--Chọn bệnh viện--</option>
+                                                                    @foreach($benhvien as $value)
+                                                                    <option value="{{$chitietbenhnhan->id_benhvien}}" {{($chitietbenhnhan->id_benhvien == $value->id)? 'selected':'select'}}>{{$value->tenbenhvien}}</option>
+                                                                    @endforeach
+                                                            </select>
+                                                                @error('id_benhvien')
+                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
+                                                                @enderror 
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Chuyên khoa</label>
+                                                            <div class="col-md-4">
+                                                            <select name="id_chuyenkhoa" class="form-control">
+                                                                @foreach($chuyenkhoa as $value)
+                                                                    <option value="{{$chitietbenhnhan->id_chuyenkhoa}}" {{($chitietbenhnhan->id_chuyenkhoa == $value->id)? 'selected':'select'}}>{{$value->tenchuyenkhoa}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                                @error('id_chuyenkhoa')
+                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
+                                                                @enderror 
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Khung Giờ</label>
+                                                            <div class="col-md-4">
+                                                            <select name="id_khunggio" class="form-control">
+
+                                                                 @foreach($khunggio as $value)
+                                                                    <option value="{{$chitietbenhnhan->id_khunggio}}"{{($chitietbenhnhan->id_khunggio == $value->id)? 'selected':'select'}}>{{$value->khunggio}}</option>
+                                                                @endforeach  
+                                                                   
+                                                            </select>
+                                                                @error('id_bacsi')
+                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
+                                                                @enderror 
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Bác sĩ</label>
+                                                            <div class="col-md-4">
+                                                            <select name="id_bacsi" class="form-control">
+                                                                @foreach($bacsi as $value)
+                                                                    <option value="{{$chitietbenhnhan->id_bacsi}}"{{($chitietbenhnhan->id_bacsi == $value->id)? 'selected':'select'}}>{{$value->tenbacsi}}</option>
+                                                                @endforeach  
+                                                                   
+                                                            </select>
+                                                                @error('id_bacsi')
+                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
+                                                                @enderror 
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group last">
+                                                            <label class="col-md-3 control-label">Static Control</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static"> email@example.com </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions top">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button type="submit" class="btn green">Gửi email</button>
+                                                                <a  class="btn default">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <!-- END FORM-->
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Giới tính</label>
-                                                    <select name = "gioitinh" class="form-control">
-                                                    <option value="" default>--Chọn giới tính--</option>
-                                                   
-                                                        <option value="1" selected>Male</option>                                                          
-                                                  
-                                                        <option value="0" selected>Female</option>
-                                                                                                     
-                                                    </select>
-                                                   
-                                                </div>
-                                            </div>
-                                          
-                                        </div>
-                                            <div class="row">
-                                                <div class="col-md-12 ">
-                                                    <div class="form-group">
-                                                        <label>Địa chỉ </label>
-                                                        <input value="{{$benhnhan->diachi}}" name="diachi" type="text" class="form-control" placeholder="Nhập địa chỉ thường trú..." value="{{old('diachi')}}"> </div>
-                                                </div>
-                                            </div>
-                                                       
-                                    <div class="form-actions right">
-                                        <button type="submit" class="btn blue"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="#" class="btn default"> Cancel </a>
-                                    </div>
-                                </form>
+                                       
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-   
+            @endsection
+            @section('script')
+@parent
+<script type="text/javascript">
+    var url = "{{route('show-chuyenkhoainbenhnhan')}}";
+    $("select[name='id_benhvien']").change(function(){
+        var id_benhvien = $(this).val();
+        var token = $("input[name='_token']").val();
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+              id_benhvien: id_benhvien,
+                _token: token
+            },
+            success: function(data) {
+                $("select[name='id_chuyenkhoa'").html('');
+                $.each(data, function(key, value){
+                    $("select[name='id_chuyenkhoa']").append(
+                        "<option value=" + value.id + ">" + value.tenchuyenkhoa + "</option>"
+                    );
+                });
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    var url1 = "{{route('show-khunggioinbenhnhan')}}";
+    $("select[name='id_benhvien']").change(function(){
+        var id_benhvien = $(this).val();
+        var token = $("input[name='_token']").val();
+        $.ajax({
+            url: url1,
+            method: 'POST',
+            data: {
+              id_benhvien: id_benhvien,
+                _token: token
+            },
+            success: function(data) {
+                $("select[name='id_khunggio'").html('');
+                $.each(data, function(key, value){
+                    $("select[name='id_khunggio']").append(
+                        "<option value=" + value.id + ">" + value.khunggio + "</option>"
+                    );
+                });
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    var url2 = "{{route('show-bacsi')}}";
+    $("select[name='id_chuyenkhoa']").change(function(){
+        var id_chuyenkhoa = $(this).val();
+        var token = $("input[name='_token']").val();
+        $.ajax({
+            url: url2,
+            method: 'POST',
+            data: {
+              id_chuyenkhoa: id_chuyenkhoa,
+                _token: token
+            },
+            success: function(data) {
+                $("select[name='id_bacsi'").html('');
+                $.each(data, function(key, value){
+                    $("select[name='id_bacsi']").append(
+                        "<option value=" + value.id + ">" + value.tenbacsi + "</option>"
+                    );
+                });
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+$('[data-toggle="datepicker"]').datepicker({
+    format:"yyyy-mm-dd",
+    minDate:0,
+    endDate:'+0d',
+    todayBtn:"linked",
+    todayHighlight:true,
+    orientation:"left",
+    autoclose:true,
+    beforeShowDay: function(d)
+    {
+      var day = d.getDay();
+      return [(day!=0)];
+    },
+  });
+  </script>
+  <script type="text/javascript">
+$('#ngaykham').datepicker({
+    format:"yyyy-mm-dd",
+    minDate:0,
+    startDate:'+0d',
+    todayBtn:"linked",
+    todayHighlight:true,
+    orientation:"left",
+    autoclose:true,
+    daysOfWeekDisabled:[0],
+    beforeShowDay: function(d)
+    {
+      var day = d.getDay();
+      return [(day!=0)]; //khong lay chu nhat
+    },
+  });
+  </script>
 @endsection

@@ -8,7 +8,7 @@ class chitietbenhnhan extends Model
 {
     protected $table = 'chitietbenhnhan';
     public $timestamp = false;
-    protected $fillable=['hovaten','ngaysinh','gioitinh','email','ngaykham','sodienthoai','diachi','id_benhvien','id_bacsi','id_chuyenkhoa','chitiet','id_khunggio'];
+    protected $fillable=['hovaten','ngaykham','id_benhvien','id_bacsi','id_chuyenkhoa','id_khunggio', 'id_benhnhan'];
     public function bacsi(){
         return $this->belongsTo('App\bacsi', 'id_bacsi', 'id');
     }
@@ -24,5 +24,8 @@ class chitietbenhnhan extends Model
    public function khunggio(){
        return $this->belongsTo('App\khunggio', 'id_khunggio', 'id');
    }
+   public function chitietkham(){
+    return $this->hasMany('App\chitietkham', 'id_chitietbenhnhan', 'id');
+}
   
 }

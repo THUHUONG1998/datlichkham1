@@ -12,6 +12,7 @@ use App\chuyenkhoa;
 use App\khunggio;
 use App\benhvien;
 use App\bacsi;
+use App\chitietbenhnhan;
 use Auth;
 use DB;
 
@@ -25,8 +26,8 @@ class benhnhanController extends Controller
     public function index(Request $request)
     {
         $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
-        $benhvien = DB::table('benhvien')->get();
-        return view('benhnhan.index',compact('benhnhan', 'benhvien'))
+      //  $benhvien = DB::table('benhvien')->get();
+        return view('benhnhan.index',compact('benhnhan'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -37,12 +38,12 @@ class benhnhanController extends Controller
      */
     public function create()
     {
-        $benhvien = DB::table('benhvien')->get();
-        $bacsi=DB::table('bacsi')->get();
-        $chuyenkhoa = DB::table('chuyenkhoa')->get();
+        // $benhvien = DB::table('benhvien')->get();
+        // $bacsi=DB::table('bacsi')->get();
+        // $chuyenkhoa = DB::table('chuyenkhoa')->get();
         $data=DB::table('users')->get();
-        $khunggio=DB::table('khunggio')->get();
-        return view('benhnhan.create',compact('benhvien','bacsi','chuyenkhoa','data','khunggio'));
+      //  $khunggio=DB::table('khunggio')->get();
+        return view('benhnhan.create',compact('data'));
     }
 
     /**
@@ -57,16 +58,9 @@ class benhnhanController extends Controller
             'hovaten' => 'required|min:5|max:255',
             'ngaysinh'=>'required|date',
             'sodienthoai'=>'required',
-            'ngaykham'=>'required',
             'gioitinh'=>'required',
             'email'=>'required',
             'diachi'=>'required',
-            'ngaykham'=>'required|date',
-            'id_benhvien' => 'required',
-            'id_bacsi' => 'required',
-            'id_chuyenkhoa' => 'required',
-            'id_khunggio'=>'required',
-
         ],
 
         [
@@ -76,21 +70,15 @@ class benhnhanController extends Controller
             'hovaten' => 'Họ và tên',
             'ngaysinh'=> 'Ngày sinh',
             'sodienthoai'=> 'Số điện thoại',
-            'ngaykham'=> 'Ngày khám',
             'diachi'=> 'Địa chỉ',
             'gioitinh'=> 'Giới tính',
             'email'=> 'Địa chỉ email',
-            'id_benhvien'=> 'Bệnh viện',
-            'id_bacsi'=>'Bác sĩ',
-            'id_chuyenkhoa'=>'Chuyên khoa',
-            'id_khunggio'=>' Khung giờ'
-
         ]);
 
         $input = $request->all();
         $input['id_user'] = Auth::user()->id;
         $benhnhan = benhnhan::create($input);
-        return redirect()->route('noidung', $benhnhan->id)
+        return redirect()->route('benhnhan.index')
                         ->with('success','patient created successfully');
     }
 
@@ -102,13 +90,9 @@ class benhnhanController extends Controller
      */
     public function show($id)
     {
-        // $benhvien = DB::table('benhvien')->get();
-        // $bacsi=DB::table('bacsi')->get();
-        // $chuyenkhoa = DB::table('chuyenkhoa')->get();
-        // $data=DB::table('users')->get();
-        // $khunggio=DB::table('khunggio')->get();
+        
         $benhnhan = benhnhan::find($id);
-        return view('benhnhan.chitietbenhnhan',compact('benhnhan'));
+        return view('benhnhan.index',compact('benhnhan'));
     }
 
     /**
@@ -119,11 +103,8 @@ class benhnhanController extends Controller
      */
     public function edit($id)
     {
-        $benhvien = DB::table('benhvien')->get();
-        $bacsi=DB::table('bacsi')->get();
-        $chuyenkhoa = DB::table('chuyenkhoa')->get();
+        
         $data=DB::table('users')->get();
-        $khunggio=DB::table('khunggio')->get();
         $benhnhan = benhnhan::find($id);
         return view('benhnhan.edit',compact( 'benhnhan','benhvien','bacsi','chuyenkhoa','data','khunggio'));
     }
@@ -140,14 +121,10 @@ class benhnhanController extends Controller
         $this->validate($request, [
             'hovaten' => 'required|min:5|max:255',
             'ngaysinh'=>'required|date',
-            'ngaykham'=>'required|date',
             'email'=>'required',
             'sodienthoai'=>'required',
             'gioitinh'=>'required',
-            'id_benhvien' => 'required',
-            'id_bacsi' => 'required',
-            'id_chuyenkhoa' => 'required',
-            'id_khunggio'=>'required',
+           
         ],
         [
             'required' => ':attribute không được bỏ trống'
@@ -156,14 +133,10 @@ class benhnhanController extends Controller
             'hovaten' => 'Họ và tên',
             'ngaysinh'=> 'Ngày sinh',
             'sodienthoai'=> 'Số điện thoại',
-            'ngaykham'=> 'Ngày khám',
             'diachi'=> 'Địa chỉ',
             'gioitinh'=> 'Giới tính',
             'email'=> 'Địa chỉ email',
-            'id_benhvien'=> 'Bệnh viện',
-            'id_bacsi'=>'Bác sĩ',
-            'id_chuyenkhoa'=>'Chuyên khoa',
-            'id_khunggio'=>' Khung giờ'
+            
 
         ]);
             
@@ -211,48 +184,82 @@ class benhnhanController extends Controller
 			return response()->json($bacsi);
 		}
     }
-   public function noidung($id){
+    public function datlichkham($id){
         $benhvien = DB::table('benhvien')->get();
         $bacsi=DB::table('bacsi')->get();
         $chuyenkhoa = DB::table('chuyenkhoa')->get();
         $data=DB::table('users')->get();
         $khunggio=DB::table('khunggio')->get();
         $benhnhan = benhnhan::find($id);
-        return view('email.index',compact( 'benhnhan','benhvien','bacsi','chuyenkhoa','data','khunggio'));
+        return view('chitietbenhnhan.datlichkham',compact( 'benhnhan','benhvien','bacsi','chuyenkhoa','data','khunggio'));
+
+    }
+    public function luulichkham(Request $request, $id)
+    {
+        $this->validate($request, [
+            'hovaten' => 'required|min:5|max:255',
+            'ngaykham'=>'required|date',
+            'id_benhvien' => 'required',
+            'id_bacsi' => 'required',
+            'id_chuyenkhoa' => 'required',
+            'id_khunggio'=>'required',
+
+        ],
+
+        [
+            'required' => ':attribute không được bỏ trống'
+        ],
+        [
+            'hovaten' => 'Họ và tên',
+            'ngaykham'=> 'Ngày khám',
+            'id_benhvien'=> 'Bệnh viện',
+            'id_bacsi'=>'Bác sĩ',
+            'id_chuyenkhoa'=>'Chuyên khoa',
+            'id_khunggio'=>' Khung giờ'
+
+        ]);
+
+        $input = $request->all();
+        $benhnhan = benhnhan::find($id);
+        $input['id_benhnhan'] = $benhnhan->id;
+    //    $input['id_user'] = Auth::user()->id;
+        
+        $chitietbenhnhan = chitietbenhnhan::create($input);
+        return redirect()->route('noidung', $chitietbenhnhan->id)
+                        ->with('success','patient created successfully');
+    }
+    public function noidung($id){
+        $benhvien = DB::table('benhvien')->get();
+        $bacsi=DB::table('bacsi')->get();
+        $chuyenkhoa = DB::table('chuyenkhoa')->get();
+        $data=DB::table('users')->get();
+        $khunggio=DB::table('khunggio')->get();
+        $chitietbenhnhan = chitietbenhnhan::find($id);
+        $benhnhan = benhnhan::find($id);
+        return view('email.index',compact( 'chitietbenhnhan','benhvien','bacsi','chuyenkhoa','data','khunggio', 'benhnhan'));
    }
    public function guimail(Request $request, $id)
-    {
-        $benhnhan = benhnhan::where('id', $id)->first();
-        $data = array();
-        $data[] = [
-            'hovaten' => $benhnhan->hovaten,
-            'ngaysinh' => $benhnhan->ngaysinh,
-            'sodienthoai' => $benhnhan->sodienthoai,
-            'email' => $benhnhan->email,
-            'diachi' => $benhnhan->diachi,
-            'bacsi'=>$benhnhan->bacsi->tenbacsi,
-            'ngaykham'=>$benhnhan->ngaykham,
-            'chuyenkhoa'=>$benhnhan->chuyenkhoa->tenchuyenkhoa,
-            'benhvien'=>$benhnhan->benhvien->tenbenhvien,
-            'khunggio'=>$benhnhan->khunggio->khunggio,
-        ];
-        Mail::to($request->email)->send(new SendMail($data));
-        $input['id_trangthai_phongvan'] = 5;
-        $benhnhan->update($input);
-        $notification = array(
-            'message' => 'Gửi mail thành công',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('benhnhan.index')->with($notification);
-    }
-    public function chitietbenhnhan($id){
-        $benhvien = DB::table('benhvien')->get();
-        $bacsi=DB::table('bacsi')->get();
-        $chuyenkhoa = DB::table('chuyenkhoa')->get();
-        $data=DB::table('users')->get();
-        $khunggio=DB::table('khunggio')->get();
-        $benhnhan = benhnhan::find($id);
-        return view('benhnhan.chitietbenhnhan',compact( 'benhnhan','benhvien','bacsi','chuyenkhoa','data','khunggio'));
+   {
+       $chitietbenhnhan = chitietbenhnhan::where('id', $id)->first();
+       $data = array();
+       $data[] = [
+           'hovaten' => $chitietbenhnhan->benhnhan->hovaten,
+           'ngaysinh' => $chitietbenhnhan->benhnhan->ngaysinh,
+           'sodienthoai' => $chitietbenhnhan->benhnhan->sodienthoai,
+           'email' => $chitietbenhnhan->benhnhan->email,
+           'diachi' => $chitietbenhnhan->benhnhan->diachi,
+           'bacsi'=>$chitietbenhnhan->bacsi->tenbacsi,
+           'ngaykham'=>$chitietbenhnhan->ngaykham,
+           'chuyenkhoa'=>$chitietbenhnhan->chuyenkhoa->tenchuyenkhoa,
+           'benhvien'=>$chitietbenhnhan->benhvien->tenbenhvien,
+           'khunggio'=>$chitietbenhnhan->khunggio->khunggio,
+       ];
+       $input = $request->all();
+       Mail::to($request->email)->send(new SendMail($data));
+       $chitietbenhnhan->update($input);
+      
+       return redirect()->route('benhnhan.index')->with('success','Gửi email thành công');
    }
-
+    
+   
 }

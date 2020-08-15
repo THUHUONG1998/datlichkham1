@@ -1,6 +1,6 @@
 @extends('pages.layout.layouts')
 @section('title')
-Chỉnh sửa
+Thêm một bệnh nhân mới
 @endsection
 @section('content')
 <div class="page-content-wrapper">
@@ -8,13 +8,17 @@ Chỉnh sửa
         <div class="row">
             <div class="col-md-12">
                 <div class="tabbable-line boxless tabbable-reversed">
-                   
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a href="#tab_1" data-toggle="tab"> 2 Columns </a>
+                        </li>
+                    </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_0">
                             <div class="portlet box green">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                       
+                                        <i class="fa fa-gift"></i>Form Actions On Bottom
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
@@ -33,9 +37,9 @@ Chỉnh sửa
                                         <li>{{ $mess }}</li>
                                     </div>
                                     @endif
-                                    <form action="{{route('benhnhan.update', $benhnhan->id)}}" method="post" class="horizontal-form">
+                                    <form action="{{route('luulichkham', $benhnhan->id)}}" method="post" class="horizontal-form">
                                         @csrf
-                                        @method('PATCH')
+                                       
                                         <div class="form-body">
                                             <h3 class="form-section">Person Info</h3>
                                             <div class="row">
@@ -53,9 +57,6 @@ Chỉnh sửa
                                                     <div class="form-group">
                                                         <label class="control-label">Số điện thoại</label>
                                                         <input value ="{{$benhnhan->sodienthoai}}" name="sodienthoai" type="text" id="sodienthoai" class="form-control" placeholder="Nhập Số điện thoại"  value="{{old('sodienthoai')}}">
-                                                        @error('sodienthoai')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <!--/span-->
@@ -63,18 +64,12 @@ Chỉnh sửa
                                                     <div class="form-group">
                                                         <label class="control-label">Email</label>
                                                         <input value ="{{$benhnhan->email}}" name="email" type="text" id="email" class="form-control" placeholder="Nhập Email" name="email"  value="{{old('email')}}">
-                                                        @error('email')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Ngày tháng năm sinh</label>
                                                         <input value ="{{$benhnhan->ngaysinh}}" class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}">
-                                                        @error('ngaysinh')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror
                                                         <!-- <input name = "ng" type="text" class="form-control" placeholder="dd/mm/yyyy"> </div> -->
                                                     </div>
                                                 </div>
@@ -101,9 +96,6 @@ Chỉnh sửa
                                                     <div class="form-group">
                                                         <label>Địa chỉ </label>
                                                         <input value ="{{$benhnhan->diachi}}" type="text" class="form-control" placeholder="Nhập địa chỉ thường trú..." name="diachi" value="" > </div>
-                                                        @error('ngaysinh')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror 
                                                 </div>
                                             </div>
                                             <h3 class="form-section">Thông tin đặt lịch</h3>
@@ -111,11 +103,7 @@ Chỉnh sửa
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Ngày Khám</label>
-                                                        <input value ="{{$benhnhan->ngaykham}}" class="form-control" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  />
-                                                        @error('ngaykham')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror  
-                                                        
+                                                        <input class="form-control" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  />
                                                         <!-- <input name = "ng" type="text" class="form-control" placeholder="dd/mm/yyyy"> </div> -->
                                                     </div>
                                                     <div class="row">
@@ -125,84 +113,36 @@ Chỉnh sửa
                                                                 <select name="id_benhvien" class="form-control">
                                                                     <option value="">--Chọn bệnh viện--</option>
                                                                     @foreach($benhvien as $value)
-                                                                    <option value="{{$value->tenbenhvien}}" {{($benhnhan->id_benhvien == $value->id)? 'selected':'select'}}>{{$value->tenbenhvien}}</option>
+                                                                    <option value="{{$value->id}}">{{$value->tenbenhvien}}</option>
                                                                     @endforeach
                                                                 </select>
-                                                                @error('id_benhvien')
-                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                                @enderror 
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Chuyên Khoa</label>
-                                                                <select value="{{$benhnhan->id_chuyenkhoa}}" name="id_chuyenkhoa" id= "id_chuyenkhoa" class="form-control">
-                                                                @foreach($chuyenkhoa as $value)
-                                                                    <option value="{{$benhnhan->id_chuyenkhoa}}" {{($benhnhan->id_chuyenkhoa == $value->id)? 'selected':'select'}}>{{$value->tenchuyenkhoa}}</option>
-                                                                @endforeach
+                                                                <select name="id_chuyenkhoa" class="form-control">
+                                                                    <option value="">--Chọn chuyên khoa--</option>
                                                                 </select>
-                                                                @error('id_chuyenkhoa')
-                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                                @enderror 
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Khung giờ</label>
                                                                 <select name="id_khunggio" class="form-control">
-                                                                @foreach($khunggio as $value)
-                                                                    <option value="{{$benhnhan->id_khunggio}}"{{($benhnhan->id_khunggio == $value->id)? 'selected':'select'}}>{{$value->khunggio}}</option>
-                                                                @endforeach
+                                                                    <option value="" default>--Chọn khung giờ--</option>
                                                                 </select>
-                                                                @error('id_khunggio')
-                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                                @enderror 
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Bác sĩ</label>
                                                                 <select name="id_bacsi" class="form-control">
-                                                                @foreach($bacsi as $value)
-                                                                    <option value="{{$benhnhan->id_bacsi}}"{{($benhnhan->id_bacsi == $value->id)? 'selected':'select'}}>{{$value->tenbacsi}}</option>
-                                                                @endforeach                                                                
+                                                                <option value="" default>--Chọn bác sĩ--</option>
+                                                                   
                                                                 </select>
-                                                                @error('id_bacsi')
-                                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                                @enderror 
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Ngày Khám</label>
-                                                        <input value ="{{$benhnhan->ngaykham}}" class="form-control" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  />
-                                                        @error('ngaykham')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror  
-                                                        
-                                                    </div>
-                                                    <h3 class="form-section">Chi tiết khám bệnh</h3>
-                                                    <div class="row">
-                                                        
-                                                        <div class="col-md-12 ">
-                                                            <div class="form-group">
-                                                        <label>Địa chỉ </label>
-                                                        <input value ="{{$benhnhan->diachi}}" type="text" class="form-control" placeholder="Triệu chứng" name="trieuchung" value="" > </div>
-                                                        @error('trieuchung')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror 
-                                                        </div> 
-                                                        <div class="col-md-12 ">
-                                                            <div class="form-group">
-                                                        <label>Địa chỉ </label>
-                                                        <input value ="{{$benhnhan->diachi}}" type="text" class="form-control" placeholder="Nhập địa chỉ thường trú..." name="diachi" value="" > </div>
-                                                        @error('ngaysinh')
-                                                            <p style="color: red;"><i><b>{{$message}}</b></i></p>
-                                                        @enderror 
-                                                        </div> 
-                                                       
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -215,7 +155,6 @@ Chỉnh sửa
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                     </form>
                                 </div>
@@ -248,7 +187,6 @@ Chỉnh sửa
                 $.each(data, function(key, value){
                     $("select[name='id_chuyenkhoa']").append(
                         "<option value=" + value.id + ">" + value.tenchuyenkhoa + "</option>"
-                        $("#id_chuyenkhoa").val("1");
                     );
                 });
             }
@@ -287,7 +225,7 @@ Chỉnh sửa
             url: url2,
             method: 'POST',
             data: {
-              id_chuyenkhoa: id_chuyenkhoa,
+                id_chuyenkhoa: id_chuyenkhoa,
                 _token: token
             },
             success: function(data) {

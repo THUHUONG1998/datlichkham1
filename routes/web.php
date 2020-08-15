@@ -39,6 +39,7 @@ Route::group(['prefix'=>'admin'], function() {
         Route::resource('benhnhan','benhnhanController');
         Route::resource('sms','smsController');
         Route::resource('email','EmailController');
+        Route::resource('chitietbenhnhan', 'chitietbenhnhanController');
        
     });
     Route::post('cropie', 'UsersController@uploadImage')->name('croppie');
@@ -54,8 +55,13 @@ Route::group(['prefix'=>'admin'], function() {
     Route::post('showchuyenkhoabn','benhnhanController@showChuyenKhoainBenhNhan')->name('show-chuyenkhoainbenhnhan');
     Route::post('showbacsi','benhnhanController@showBacSiinBenhNhan')->name('show-bacsi');
     Route::post('showkhunggio','benhnhanController@showKhungGioinBenhNhan')->name('show-khunggioinbenhnhan');
-    Route::post('send-email', 'EmailController@GuiThongTin')->name('guithongtin');
+  
     Route::get('noidung/{id}', 'benhnhanController@noidung')->name('noidung');
     Route::post('guimail/{id}', 'benhnhanController@guimail')->name('guimail');
-    Route::get('chitietbenhnhan/{id}', 'benhnhanController@chitietbenhnhan')->name('chitietbenhnhan');
+    Route::get('datlichkham/{id}', 'benhnhanController@datlichkham')->name('datlichkham');
+    Route::post('luulichkham/{id}', 'benhnhanController@luulichkham')->name('luulichkham');
+    Route::get('chitietkham/{id}', 'chitietbenhnhanController@chitiet')->name('chitietkham');
+    Route::post('luuchitietkham/{id}', 'chitietbenhnhanController@luuchitietkham')->name('luuchitietkham');
+    Route::get('generate-pdf','PDFController@generatePDF')->name('exportdonthuoc');
+
 });
