@@ -280,7 +280,7 @@ class benhnhanController extends Controller
           return redirect()->route('benhnhan.index')->with('error', 'Bệnh nhân này chưa có lịch sử khám');
       }
 
-       return view('benhnhan.lichsu', compact('lankham', 'benhnhan', 'chitietkham', 'chitietbenhnhan'));
+       return view('benhnhan.lichsu', compact('lankham', 'benhnhan', 'chitietkham'));
    }
     
    
