@@ -114,7 +114,7 @@ class benhnhanController extends Controller
         
         $data=DB::table('users')->get();
         $benhnhan = benhnhan::find($id);
-        return view('benhnhan.edit',compact( 'benhnhan','benhvien','bacsi','chuyenkhoa','data','khunggio'));
+        return view('benhnhan.edit',compact( 'benhnhan','data'));
     }
 
     /**
