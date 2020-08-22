@@ -11,7 +11,7 @@
                         <div class="portlet box green">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-gift"></i>Form Actions On Bottom </div>
+                                    <i class="fa fa-gift"></i>Thêm khung giờ </div>
                             </div>
                             <div class="portlet-body form">
                                @if (count($errors) > 0)
@@ -31,11 +31,10 @@
                                <form action="{{route('khunggio.store')}}" method="post" class="horizontal-form">
                                @csrf
                                     <div class="form-body">
-                                        <h3 class="form-section">Person Info</h3>
+                                        <h3 class="form-section">Nhập thông tin</h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                <span class="help-block"> Khung giờ được tạo từ  </span>
                                                     <label class="control-label">Khung giờ</label>
                                                     <input  name = "khunggio" type="text" class="form-control" placeholder="Khung Giờ" value="{{old('khunggio')}}">
                                                 </div>
@@ -52,12 +51,6 @@
                                                       <option value="{{$value->id}}" >{{$value->tenbenhvien}}</option>  
                                                     @endforeach
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Giới hạn</label>
-                                                    <input  name = "gioihandat" type="text" class="form-control" placeholder="Giới hạn" value="{{old('gioihan')}}">
                                                 </div>
                                             </div>
                                         </div>

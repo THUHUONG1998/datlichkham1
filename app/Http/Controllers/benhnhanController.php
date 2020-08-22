@@ -13,11 +13,19 @@ use App\khunggio;
 use App\benhvien;
 use App\bacsi;
 use App\chitietbenhnhan;
+use App\chitietkham;
 use Auth;
 use DB;
 
 class benhnhanController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:benhnhan-list|benhnhan-create|benhnhan-edit|benhnhan-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:benhnhan-create', ['only' => ['create','store']]);
+         $this->middleware('permission:benhnhan-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:benhnhan-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,10 +33,24 @@ class benhnhanController extends Controller
      */
     public function index(Request $request)
     {
-        $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
-      //  $benhvien = DB::table('benhvien')->get();
+        $key1 = $request->get('key1');
+        if($key1)
+        {
+            $benhnhan = benhnhan::where('id','like','%'.$key1.'%')
+            ->where('hovaten','like','%'.$key1.'%')
+            ->orwhere('email','like','%'.$key1.'%')->paginate(5);
+          //  $data->appends(['key'=>$key]);
+        }
+        else
+        {
+            $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
+        }
+        // code phan trang
         return view('benhnhan.index',compact('benhnhan'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
+        $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
+      //  $benhvien = DB::table('benhvien')->get();
+        
     }
 
     /**
@@ -41,7 +63,7 @@ class benhnhanController extends Controller
         // $benhvien = DB::table('benhvien')->get();
         // $bacsi=DB::table('bacsi')->get();
         // $chuyenkhoa = DB::table('chuyenkhoa')->get();
-        $data=DB::table('users')->get();
+        $benhnhan=DB::table('benhnhan')->get();
       //  $khunggio=DB::table('khunggio')->get();
         return view('benhnhan.create',compact('data'));
     }
@@ -74,12 +96,12 @@ class benhnhanController extends Controller
             'gioitinh'=> 'Giới tính',
             'email'=> 'Địa chỉ email',
         ]);
-
         $input = $request->all();
+        $input['ngaysinh']=date_format(date_create($request->ngaysinh), "Y-m-d");
         $input['id_user'] = Auth::user()->id;
         $benhnhan = benhnhan::create($input);
         return redirect()->route('benhnhan.index')
-                        ->with('success','patient created successfully');
+                        ->with('success','Thêm bệnh nhân thành công');
     }
 
     /**
@@ -139,13 +161,14 @@ class benhnhanController extends Controller
             
 
         ]);
-            
+        $input = $request->all();
         $benhnhan = benhnhan::find($id);
-        $benhnhan->update($request->all());
+        $input['ngaysinh']=date_format(date_create($request->ngaysinh), "Y-m-d");
+        $benhnhan->update($input);
         $benhnhan->save();
 
         return redirect()->route('benhnhan.index')
-                        ->with('success','Patient updated successfully');
+                        ->with('success','Sửa bệnh nhân thành công');
     }
 
     /**
@@ -220,13 +243,14 @@ class benhnhanController extends Controller
         ]);
 
         $input = $request->all();
+        $input['ngaykham']=date_format(date_create($request->ngaykham), "Y-m-d");
         $benhnhan = benhnhan::find($id);
         $input['id_benhnhan'] = $benhnhan->id;
     //    $input['id_user'] = Auth::user()->id;
         
         $chitietbenhnhan = chitietbenhnhan::create($input);
         return redirect()->route('noidung', $chitietbenhnhan->id)
-                        ->with('success','patient created successfully');
+                        ->with('success','Thêm bệnh nhân thành công');
     }
     public function noidung($id){
         $benhvien = DB::table('benhvien')->get();
@@ -253,12 +277,24 @@ class benhnhanController extends Controller
            'chuyenkhoa'=>$chitietbenhnhan->chuyenkhoa->tenchuyenkhoa,
            'benhvien'=>$chitietbenhnhan->benhvien->tenbenhvien,
            'khunggio'=>$chitietbenhnhan->khunggio->khunggio,
+           'diachibenhvien' => $chitietbenhnhan->benhvien->diachi,
+           'sodienthoaibv' => $chitietbenhnhan->benhvien->sodienthoai,
        ];
        $input = $request->all();
        Mail::to($request->email)->send(new SendMail($data));
        $chitietbenhnhan->update($input);
       
        return redirect()->route('benhnhan.index')->with('success','Gửi email thành công');
+   }
+   public function lichsu($id){
+       $benhnhan= benhnhan::find($id);
+       $chitietkham = chitietkham::where('id_benhnhan', $benhnhan->id)->get();
+      $lankham = $chitietkham->count();
+      if($lankham==0){
+          return redirect()->route('benhnhan.index')->with('error', 'Bệnh nhân này chưa có lịch sử khám');
+      }
+
+       return view('benhnhan.lichsu', compact('lankham','lichsu', 'benhnhan', 'chitietkham', 'chitietbenhnhan'));
    }
     
    

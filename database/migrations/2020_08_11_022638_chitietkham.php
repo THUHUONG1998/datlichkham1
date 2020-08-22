@@ -15,8 +15,10 @@ class Chitietkham extends Migration
     {
         Schema::create('chitietkham', function ($table) {
             $table->bigIncrements('id'); //Tự tăng, khóa chính
-            $table->string('trieuchung');
+            $table->string('chuandoan');
             $table->string('donthuoc');
+            $table->unsignedBigInteger('id_benhnhan'); //Kiểu int
+            $table->foreign('id_benhnhan')->references('id')->on('benhnhan');
             $table->unsignedBigInteger('id_chitietbenhnhan'); //Kiểu int
             $table->foreign('id_chitietbenhnhan')->references('id')->on('chitietbenhnhan');
             $table->timestamps(); //Tự cập nhật thời gian

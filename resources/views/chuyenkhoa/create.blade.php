@@ -17,6 +17,7 @@
                                <form action="{{route('chuyenkhoa.store')}}" method="post" class="horizontal-form">
                                    @csrf
                                     <div class="form-body">
+                                        <h3 class="form-section">Nhập thông tin chuyên khoa</h3>
                                             <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">

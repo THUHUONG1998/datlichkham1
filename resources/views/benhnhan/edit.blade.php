@@ -1,7 +1,5 @@
 @extends('pages.layout.layouts')
-@section('title')
-Chỉnh sửa
-@endsection
+
 @section('content')
 <div class="page-content-wrapper">
     <div class="page-content">
@@ -12,13 +10,11 @@ Chỉnh sửa
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_0">
                             <div class="portlet box green">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                       
-                                    </div>
-                                </div>
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-gift"></i>Sửa bệnh nhân </div>
+                            </div>
                                 <div class="portlet-body form">
-                                    <!-- BEGIN FORM-->
                                     @if (count($errors) > 0)
                                     <div class="alert alert-danger">
                                         <ul>
@@ -33,11 +29,11 @@ Chỉnh sửa
                                         <li>{{ $mess }}</li>
                                     </div>
                                     @endif
-                                    <form action="{{route('luulichkham', $benhnhan->id)}}" method="post" class="horizontal-form">
+                                    <form action="{{route('benhnhan.update', $benhnhan->id)}}" method="post" class="horizontal-form">
                                         @csrf
                                         @method('PATCH')
                                         <div class="form-body">
-                                            <h3 class="form-section">Person Info</h3>
+                                            <h3 class="form-section">Nhập thông tin</h3>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -71,7 +67,7 @@ Chỉnh sửa
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Ngày tháng năm sinh</label>
-                                                        <input value ="{{$benhnhan->ngaysinh}}" class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}">
+                                                        <input value="{{date_format(date_create($benhnhan->ngaysinh), "d-m-Y")}}" class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  >
                                                         @error('ngaysinh')
                                                             <p style="color: red;"><i><b>{{$message}}</b></i></p>
                                                         @enderror
@@ -85,10 +81,9 @@ Chỉnh sửa
                                                     <div class="form-group">
                                                         <label class="control-label">Giới tính</label>
                                                         <select name="gioitinh" class="form-control">
-                                                            <option value="1" {{($benhnhan->gioitinh == 1)? 'selected':'select'}}>Male</option>
-                                                            <option value="0" {{($benhnhan->gioitinh == 0)? 'selected':'select'}}>Female</option>
+                                                            <option value="1" {{($benhnhan->gioitinh == 1)? 'selected':'select'}}>Nam</option>
+                                                            <option value="0" {{($benhnhan->gioitinh == 0)? 'selected':'select'}}>Nữ</option>
                                                         </select>
-                                                        <span class="help-block"> Select your gender </span>
                                                     </div>
                                                 </div>
                                                 <!--/span-->
@@ -134,79 +129,10 @@ Chỉnh sửa
 @endsection
 @section('script')
 @parent
-<script type="text/javascript">
-    var url = "{{route('show-chuyenkhoainbenhnhan')}}";
-    $("select[name='id_benhvien']").change(function(){
-        var id_benhvien = $(this).val();
-        var token = $("input[name='_token']").val();
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: {
-              id_benhvien: id_benhvien,
-                _token: token
-            },
-            success: function(data) {
-                $("select[name='id_chuyenkhoa'").html('');
-                $.each(data, function(key, value){
-                    $("select[name='id_chuyenkhoa']").append(
-                        "<option value=" + value.id + ">" + value.tenchuyenkhoa + "</option>"
-                        $("#id_chuyenkhoa").val("1");
-                    );
-                });
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    var url1 = "{{route('show-khunggioinbenhnhan')}}";
-    $("select[name='id_benhvien']").change(function(){
-        var id_benhvien = $(this).val();
-        var token = $("input[name='_token']").val();
-        $.ajax({
-            url: url1,
-            method: 'POST',
-            data: {
-              id_benhvien: id_benhvien,
-                _token: token
-            },
-            success: function(data) {
-                $("select[name='id_khunggio'").html('');
-                $.each(data, function(key, value){
-                    $("select[name='id_khunggio']").append(
-                        "<option value=" + value.id + ">" + value.khunggio + "</option>"
-                    );
-                });
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    var url2 = "{{route('show-bacsi')}}";
-    $("select[name='id_chuyenkhoa']").change(function(){
-        var id_chuyenkhoa = $(this).val();
-        var token = $("input[name='_token']").val();
-        $.ajax({
-            url: url2,
-            method: 'POST',
-            data: {
-              id_chuyenkhoa: id_chuyenkhoa,
-                _token: token
-            },
-            success: function(data) {
-                $("select[name='id_bacsi'").html('');
-                $.each(data, function(key, value){
-                    $("select[name='id_bacsi']").append(
-                        "<option value=" + value.id + ">" + value.tenbacsi + "</option>"
-                    );
-                });
-            }
-        });
-    });
-</script>
+
 <script type="text/javascript">
 $('[data-toggle="datepicker"]').datepicker({
-    format:"yyyy-mm-dd",
+    format:"dd-mm-yyyy",
     minDate:0,
     endDate:'+0d',
     todayBtn:"linked",
@@ -222,7 +148,7 @@ $('[data-toggle="datepicker"]').datepicker({
   </script>
   <script type="text/javascript">
 $('#ngaykham').datepicker({
-    format:"yyyy-mm-dd",
+    format:"dd-mm-yyyy",
     minDate:0,
     startDate:'+0d',
     todayBtn:"linked",

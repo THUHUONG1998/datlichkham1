@@ -10,13 +10,13 @@ use App\chuyenkhoa;
 
 class bacsiController extends Controller
 {
-    //    function __construct()
-    // {
-    //      $this->middleware('permission:bs-list|bs-create|bs-edit|bs-delete', ['only' => ['index','store']]);
-    //      $this->middleware('permission:bs-create', ['only' => ['create','store']]);
-    //      $this->middleware('permission:bs-edit', ['only' => ['edit','update']]);
-    //      $this->middleware('permission:bs-delete', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+         $this->middleware('permission:bacsi-list|bacsi-create|bacsi-edit|bacsi-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:bacsi-create', ['only' => ['create','store']]);
+         $this->middleware('permission:bacsi-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:bacsi-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         // code phan trang

@@ -5,22 +5,6 @@ Chỉnh sửa
 @section('content')
 <div class="page-content-wrapper">
     <div class="page-content">
-        <div class="page-head">
-            <div class="page-title">
-                <h1>User Profile 2
-                    <small>user profile sample</small>
-                </h1>
-            </div>
-        </div>
-        <ul class="page-breadcrumb breadcrumb">
-            <li>
-                <a href="index.html">Home</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span class="active">User</span>
-            </li>
-        </ul>
         <div class="profile">
             <div class="tabbable-line tabbable-full-width">
                 <ul class="nav nav-tabs">
@@ -37,18 +21,14 @@ Chỉnh sửa
                         <div class="col-md-12">
                 <div class="portlet light bordered">
                     <div class="portlet-title">
-                        @if($error = Session::get('error'))
+                        @if($message = Session::get('success'))
                         <div class="alert alert-danger" role="alert">
-                            {{$error}}
+                            {{$message}}
                         </div>
                         @endif
                         <div class="caption">
                             <i class="icon-social-dribbble font-green"></i>
                             <span class="caption-subject font-green bold uppercase">Simple Table</span>
-                        </div>
-                        <div class="actions">
-                            <a class="btn btn-success" href="{{ route('benhnhan.create') }}">Thêm bệnh nhân mới</a>
-                            
                         </div>
                     </div>
                     <div class="portlet-body">

@@ -8,17 +8,12 @@ Thêm một bệnh nhân mới
         <div class="row">
             <div class="col-md-12">
                 <div class="tabbable-line boxless tabbable-reversed">
-                    <ul class="nav nav-tabs">
-                        <li>
-                            <a href="#tab_1" data-toggle="tab"> 2 Columns </a>
-                        </li>
-                    </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_0">
                             <div class="portlet box green">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class="fa fa-gift"></i>Form Actions On Bottom
+                                        <i class="fa fa-gift"></i>Thêm bệnh nhân mới
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
@@ -40,7 +35,7 @@ Thêm một bệnh nhân mới
                                     <form action="{{route('benhnhan.store')}}" method="post" class="horizontal-form">
                                         @csrf
                                         <div class="form-body">
-                                            <h3 class="form-section">Person Info</h3>
+                                            <h3 class="form-section">Nhập thông tin bệnh nhân</h3>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -73,7 +68,6 @@ Thêm một bệnh nhân mới
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--/row-->
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -82,12 +76,9 @@ Thêm một bệnh nhân mới
                                                             <option value="1">Male</option>
                                                             <option value="0">Female</option>
                                                         </select>
-                                                        <span class="help-block"> Select your gender </span>
                                                     </div>
                                                 </div>
-                                                <!--/span-->
 
-                                                <!--/span-->
                                             </div>
                                             <h3 class="form-section">Địa chỉ thường trú</h3>
                                             <div class="row">
@@ -128,77 +119,8 @@ Thêm một bệnh nhân mới
 @section('script')
 @parent
 <script type="text/javascript">
-    var url = "{{route('show-chuyenkhoainbenhnhan')}}";
-    $("select[name='id_benhvien']").change(function(){
-        var id_benhvien = $(this).val();
-        var token = $("input[name='_token']").val();
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: {
-              id_benhvien: id_benhvien,
-                _token: token
-            },
-            success: function(data) {
-                $("select[name='id_chuyenkhoa'").html('');
-                $.each(data, function(key, value){
-                    $("select[name='id_chuyenkhoa']").append(
-                        "<option value=" + value.id + ">" + value.tenchuyenkhoa + "</option>"
-                    );
-                });
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    var url1 = "{{route('show-khunggioinbenhnhan')}}";
-    $("select[name='id_benhvien']").change(function(){
-        var id_benhvien = $(this).val();
-        var token = $("input[name='_token']").val();
-        $.ajax({
-            url: url1,
-            method: 'POST',
-            data: {
-              id_benhvien: id_benhvien,
-                _token: token
-            },
-            success: function(data) {
-                $("select[name='id_khunggio'").html('');
-                $.each(data, function(key, value){
-                    $("select[name='id_khunggio']").append(
-                        "<option value=" + value.id + ">" + value.khunggio + "</option>"
-                    );
-                });
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    var url2 = "{{route('show-bacsi')}}";
-    $("select[name='id_chuyenkhoa']").change(function(){
-        var id_chuyenkhoa = $(this).val();
-        var token = $("input[name='_token']").val();
-        $.ajax({
-            url: url2,
-            method: 'POST',
-            data: {
-                id_chuyenkhoa: id_chuyenkhoa,
-                _token: token
-            },
-            success: function(data) {
-                $("select[name='id_bacsi'").html('');
-                $.each(data, function(key, value){
-                    $("select[name='id_bacsi']").append(
-                        "<option value=" + value.id + ">" + value.tenbacsi + "</option>"
-                    );
-                });
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
 $('[data-toggle="datepicker"]').datepicker({
-    format:"yyyy-mm-dd",
+    format:"dd-mm-yyyy",
     minDate:0,
     endDate:'+0d',
     todayBtn:"linked",
@@ -214,7 +136,7 @@ $('[data-toggle="datepicker"]').datepicker({
   </script>
   <script type="text/javascript">
 $('#ngaykham').datepicker({
-    format:"yyyy-mm-dd",
+    format:"dd-mm-yyyy",
     minDate:0,
     startDate:'+0d',
     todayBtn:"linked",

@@ -26,7 +26,7 @@ Route::group(['prefix'=>'admin'], function() {
     Route::group(['middleware' => ['auth']], function() {
         Route::get('/profile', 'HomeController@userProFile')->name('profile');
         Route::resource('users','UsersController');
-        Route::get('', 'UsersController@index')->name('home');
+        Route::get('', 'benhnhanController@index')->name('home');
         Route::get('deleteRole', 'RoleController@destroy1')->name('roles.destroy1');
         Route::get('deletePermission','Permission@destroy')->name('permission.destroy');
         Route::resource('roles','RoleController');
@@ -36,11 +36,12 @@ Route::group(['prefix'=>'admin'], function() {
         Route::resource('chuyenkhoa', 'chuyenkhoaController');
         Route::resource('bacsi','bacsiController');
         Route::resource('khunggio','khunggioController');
-        Route::resource('benhnhan','benhnhanController');
         Route::resource('sms','smsController');
         Route::resource('email','EmailController');
         Route::resource('chitietbenhnhan', 'chitietbenhnhanController');
-       
+        Route::resource('benhnhan','benhnhanController');
+        
+        
     });
     Route::post('cropie', 'UsersController@uploadImage')->name('croppie');
     Route::get('changePassword', 'HomeController@changePassword')->name('changePassword');
@@ -62,6 +63,8 @@ Route::group(['prefix'=>'admin'], function() {
     Route::post('luulichkham/{id}', 'benhnhanController@luulichkham')->name('luulichkham');
     Route::get('chitietkham/{id}', 'chitietbenhnhanController@chitiet')->name('chitietkham');
     Route::post('luuchitietkham/{id}', 'chitietbenhnhanController@luuchitietkham')->name('luuchitietkham');
-    Route::get('generate-pdf','PDFController@generatePDF')->name('exportdonthuoc');
+    Route::get('generate-pdf/{id}','PDFController@generatePDF')->name('exportdonthuoc');
+    Route::get('donthuoc/{id}','PDFController@index')->name('donthuoc');
+    Route::get('lichsu/{id}','benhnhanController@lichsu')->name('lichsu');
 
 });

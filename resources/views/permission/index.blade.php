@@ -5,43 +5,12 @@ Bảng Permission
 @endsection
 @section('content')
 
-<!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
-    <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
-        <!-- BEGIN PAGE HEAD-->
         <div class="page-head">
-            <!-- BEGIN PAGE TITLE -->
-            <div class="page-title">
-                <h1>Users Datatables
-                    <small>users datatable samples</small>
-                </h1>
-            </div>
-            <!-- END PAGE TITLE -->
-            
         </div>
-        <!-- END PAGE HEAD-->
-        <!-- BEGIN PAGE BREADCRUMB -->
-        
-        <ul class="page-breadcrumb breadcrumb">
-            <li>
-                <a href="index.html">Home</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <a href="#">Tables</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span class="active">Permission Tables</span>
-            </li>
-        </ul>
-        <!-- END PAGE BREADCRUMB -->
-        <!-- BEGIN PAGE BASE CONTENT -->
-        
         <div class="row">
             <div class="col-md-12">
-                <!-- BEGIN SAMPLE TABLE PORTLET-->
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption">

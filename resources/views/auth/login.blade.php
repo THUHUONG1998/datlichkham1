@@ -60,15 +60,12 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
+              
             </div>
           </div>
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <div class="col-md-5">
+            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
           </div>
           <!-- /.col -->
         </div>
@@ -78,12 +75,12 @@
         <div class="col-md-8 offset-md-0">
             @if (Route::has('password.request'))
                 <a  class="text-center" href="{{ route('password.request') }}">
-                    {{ __('I forgot my password') }}
+                    {{ __('Quên mật khẩu') }}
                 </a>
             @endif
         </div>
        
-        <a href="{{route('register')}}" class="text-center">Register a new membership</a>
+        <a href="{{route('register')}}" class="text-center">Đăng kí thành viên</a>
       </p>
     </div>
     </div>

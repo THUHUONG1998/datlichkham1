@@ -8,9 +8,9 @@ class khunggio extends Model
 {
     protected $table = 'khunggio';
     public $timestamp = false;
-    protected $dates =['ngaysinh','ngaykham'];
+   
     protected $fillable = [
-        'khunggio', 'id_benhvien', 'gioihandat'
+        'khunggio', 'id_benhvien', 
     ];
     public function benhvien(){
         return $this->belongsTo('App\benhvien', 'id_benhvien', 'id');

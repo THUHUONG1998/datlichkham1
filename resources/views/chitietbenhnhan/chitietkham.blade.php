@@ -96,9 +96,9 @@ Chỉnh sửa
                                             <div class="row">
                                                 <div class="col-md-12 ">
                                                     <div class="form-group">
-                                                        <label><b>Triệu chứng </b> </label>
-                                                        <textarea  rows="5" class="form-control"  name="trieuchung" value="" > </textarea>
-                                                        @error('trieuchung')
+                                                        <label><b>Chuẩn đoán </b> </label>
+                                                        <textarea  rows="5" class="form-control"  name="chuandoan" value="" > </textarea>
+                                                        @error('chuandoan')
                                                             <p style="color: red;"><i><b>{{$message}}</b></i></p>
                                                         @enderror 
                                                     </div>

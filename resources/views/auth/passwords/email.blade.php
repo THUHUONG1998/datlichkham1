@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../AdminLTE-masterindex2.html"><b>Request Password</b></a>
+    <a href="../AdminLTE-masterindex2.html"><b>Yêu cầu mật khẩu</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -50,7 +50,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Request new password</button>
+            <button type="submit" class="btn btn-primary btn-block">Yêu cầu đổi mật khẩu</button>
           </div>
           <!-- /.col -->
         </div>

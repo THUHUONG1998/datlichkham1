@@ -6,41 +6,37 @@ Bảng bệnh nhân
 <div class="page-content-wrapper">
     <div class="page-content">
         <div class="page-head">
-            <div class="page-title">
-                <h1>Patient Datatables
-                    <small>users datatable samples</small>
-                </h1>
+        <form class="search-form" action="{{route('benhnhan.index')}}" method="GET">
+            {{ csrf_field() }}
+            <div class="input-group">
+                <input type="text" name = "key1" id = "key1" class="form-control input-sm" placeholder="Search..." name="query">
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit">
+                            <i class="icon-magnifier"></i>
+                        </a>
+                    </span>
             </div>
-
+        </form>
         </div>
-        <ul class="page-breadcrumb breadcrumb">
-            <li>
-                <a href="index.html">Home</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <a href="#">Tables</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span class="active">Patient Tables</span>
-            </li>
-        </ul>
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light bordered">
                     <div class="portlet-title">
-                        @if($error = Session::get('error'))
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                    </div>
+                    @endif
+                    @if($error = Session::get('error'))
                         <div class="alert alert-danger" role="alert">
                             {{$error}}
                         </div>
                         @endif
-                        <div class="caption">
+                            <div class="caption">
                             <i class="icon-social-dribbble font-green"></i>
-                            <span class="caption-subject font-green bold uppercase">Simple Table</span>
+                            <span class="caption-subject font-green bold uppercase">Bảng bệnh nhân</span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-success" href="{{ route('benhnhan.create') }}">Thêm bệnh nhân mới</a>
                             
                         </div>
                     </div>
@@ -66,7 +62,7 @@ Bảng bệnh nhân
                                             <td>{{ $value->email}}</td>
                                             <td>    
                                                 <a class="btn btn-primary" href="{{ route('benhnhan.edit',$value->id) }}">Sửa TT</a>
-                                                <a class="btn btn-warning" href="{{ route('exportdonthuoc') }}">Lịch sử</a>
+                                                <a class="btn btn-warning" href="{{ route('lichsu',$value->id) }}" >Lịch sử</a>
                                                 <a class="btn btn-light" href="{{ route('datlichkham',$value->id) }}">Đặt lịch</a>
                                             </td>
                                         </tr>

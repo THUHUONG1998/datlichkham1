@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:user-create', ['only' => ['create','store']]);
+         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -61,18 +68,26 @@ class UsersController extends Controller
         // code lay du lieu vao database
         $this->validate($request, [
             'username' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'manhanvien' => 'unique:users,manhanvien',
-         //  'roles' => 'required'
+            'hovaten'=>'required',
+            'email' => 'required|email|unique:users,email,',
+            'password' => 'same:confirm-password',
+            'sodienthoai'=>'required',
+            'gioitinh'=>'required',
+            'roles' => 'required',
+          
         ],
         [
             'required' => ':attribute không được bỏ trống',
+            'unique' => ':attribute đã tồn tại',
+            'same'=>  ': attribute giống nhau',
         ],
         [
             'username' => 'Tên người dùng',
+            'hovaten' =>'Họ và tên',
+            'email' => 'Địa chỉ email',
+            'sodienthoai'=>'Số điện thoại',
+            'gioitinh'=>'Giới tính',
         ]);
-
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -150,14 +165,12 @@ class UsersController extends Controller
         $this->validate($request, [
             'username' => 'required',
             'hovaten'=>'required',
-            'manhanvien'=>'required|manhanvien|unique:users,manhanvien,'.$id,
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'diachi'=>'required',
             'sodienthoai'=>'required',
             'gioitinh'=>'required',
-           // 'roles' => 'required'
-           // unique:users,manhanvien
+            'roles' => 'required',
+          
         ],
         [
             'required' => ':attribute không được bỏ trống',
@@ -166,6 +179,8 @@ class UsersController extends Controller
         [
             'username' => 'Tên người dùng',
             'email' => 'Địa chỉ email',
+            'sodienthoai'=>'Số điện thoại',
+            'gioitinh'=>'Giới tính',
         ]);
 
 
@@ -193,9 +208,6 @@ class UsersController extends Controller
             $input['avatar'] = 'upload/avatar/'.$random_file_name;
         } 
         else $input['avatar']=$user->avatar;
-
-
-        
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->input('roles'));

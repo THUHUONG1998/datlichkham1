@@ -6,34 +6,13 @@ Bảng bác sĩ
 @section('content')
             <div class="page-content-wrapper">
                 <div class="page-content">
-                    <div class="page-head">
-                        <div class="page-title">
-                            <h1>Users Datatables
-                                <small>users datatable samples</small>
-                            </h1>
-                        </div>
-                       
-                    </div>
-                    <ul class="page-breadcrumb breadcrumb">
-                        <li>
-                            <a href="index.html">Home</a>
-                            <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <a href="#">Tables</a>
-                            <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <span class="active">Doctor Tables</span>
-                        </li>
-                    </ul>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class="icon-social-dribbble font-green"></i>
-                                        <span class="caption-subject font-green bold uppercase">Simple Table</span>
+                                        <span class="caption-subject font-green bold uppercase">Bảng bác sĩ</span>
                                     </div>
                                     <div class="actions">
                                        
@@ -61,12 +40,7 @@ Bảng bác sĩ
                                                   <td>{{$value->benhvien->tenbenhvien}}</td>
                                                   <td>{{$value->chuyenkhoa->tenchuyenkhoa}}</td>
                                                   <td>
-                                                      <a class="btn btn-info" href="{{ route('bacsi.show',$value->id) }}">Show</a>
-                                                  
                                                       <a class="btn btn-primary" href="{{ route('bacsi.edit',$value->id) }}">Edit</a>
-                                                    
-                                                      <button class="btn btn-danger" data-userid= {{$value->id}} data-toggle="modal" data-target="#myModal{{ $i}}">Delete</button>
-                                                    
                                                   </td>
                                                   </tr>
                                                   <div class="modal modal-danger fade" id="myModal{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -103,7 +77,7 @@ Bảng bác sĩ
                         </div>
                     </div>
                     {!! $bacsi->links() !!}
-                        </div>
+                </div>
                         
                 </div>
             </div>

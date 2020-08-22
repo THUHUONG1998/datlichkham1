@@ -33,6 +33,15 @@ class LoginController extends Controller
      *
      * @return void
      */
+//     protected function redirectTo()
+// {
+//     if (auth()->user()->role_id == 5) {
+//         return '/admin';
+//     }else if(auth()->user()->role_id == 3 || auth()->user()->role_id == 4){
+//         return '/admin';
+//     }
+//     return '/home';
+// }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

@@ -18,7 +18,6 @@ class Benhnhan extends Migration
             $table->string('hovaten'); //Kiểu chuỗi
             $table->date('ngaysinh'); //Kiểu chuỗi
             $table->string('gioitinh'); //Kiểu chuỗi
-            $table->date('ngaykham'); //Kiểu chuỗi
             $table->string('sodienthoai');
             $table->string('email');
             $table->string('diachi');

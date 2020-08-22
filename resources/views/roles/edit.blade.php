@@ -3,6 +3,8 @@
 Chỉnh sửa thông tin role 
 @endsection
 @section('content')
+<div class="page-content-wrapper">
+<div class="page-content">
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -51,6 +53,7 @@ Chỉnh sửa thông tin role
     </div>
 </div>
 {!! Form::close() !!}
-
+</div>
+</div>
 
 @endsection

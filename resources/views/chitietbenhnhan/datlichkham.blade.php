@@ -8,17 +8,12 @@ Thêm một bệnh nhân mới
         <div class="row">
             <div class="col-md-12">
                 <div class="tabbable-line boxless tabbable-reversed">
-                    <ul class="nav nav-tabs">
-                        <li>
-                            <a href="#tab_1" data-toggle="tab"> 2 Columns </a>
-                        </li>
-                    </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_0">
                             <div class="portlet box green">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class="fa fa-gift"></i>Form Actions On Bottom
+                                        <i class="fa fa-gift"></i>Đặt lịch khám
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
@@ -41,7 +36,7 @@ Thêm một bệnh nhân mới
                                         @csrf
                                        
                                         <div class="form-body">
-                                            <h3 class="form-section">Person Info</h3>
+                                            <h3 class="form-section">Nhập thông tin</h3>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -69,8 +64,7 @@ Thêm một bệnh nhân mới
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Ngày tháng năm sinh</label>
-                                                        <input value ="{{$benhnhan->ngaysinh}}" class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}">
-                                                        <!-- <input name = "ng" type="text" class="form-control" placeholder="dd/mm/yyyy"> </div> -->
+                                                        <input value="{{date_format(date_create($benhnhan->ngaysinh), "d-m-Y")}}" class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -241,7 +235,7 @@ Thêm một bệnh nhân mới
 </script>
 <script type="text/javascript">
 $('[data-toggle="datepicker"]').datepicker({
-    format:"yyyy-mm-dd",
+    format:"dd-mm-yyyy",
     minDate:0,
     endDate:'+0d',
     todayBtn:"linked",
@@ -257,7 +251,7 @@ $('[data-toggle="datepicker"]').datepicker({
   </script>
   <script type="text/javascript">
 $('#ngaykham').datepicker({
-    format:"yyyy-mm-dd",
+    format:"dd-mm-yyyy",
     minDate:0,
     startDate:'+0d',
     todayBtn:"linked",

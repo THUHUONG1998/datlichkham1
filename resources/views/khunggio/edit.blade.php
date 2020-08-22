@@ -1,65 +1,70 @@
 @extends('pages.layout.layouts')
-@section('title')
-Chỉnh sửa thông tin khung giờ
-@endsection
+
 @section('content')
 <div class="page-content-wrapper">
-    <div class="page-content">
+<div class="page-content">
 <div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Edit Time</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('khunggio.index') }}"> Back</a>
+        <div class="col-md-12">
+            <div class="tabbable-line boxless tabbable-reversed">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_0">
+                        <div class="portlet box green">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-gift"></i>Sửa khung giờ </div>
+                            </div>
+                            <div class="portlet-body form">
+                               @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                </div>
+                               @endif
+                               @if($mess=Session::get('error'))
+                                <div class="alert alert-danger">
+                                <li>{{ $mess }}</li>
+                                </div>
+                                @endif
+                               <form action="{{route('khunggio.update', $khunggio->id)}}" method="post" class="horizontal-form">
+                                   @csrf
+
+                                    <div class="form-body">
+                                        <h3 class="form-section">Nhập thông tin</h3>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Khung giờ</label>
+                                                    <input  name = "khunggio" type="text" value="{{$khunggio->khunggio}}" class="form-control" placeholder="Họ và tên">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                    <label class="control-label">Bệnh viện</label>
+                                                    <select name="id_benhvien" class="form-control">
+                                                        <option value="" default>---Chọn bệnh viện---</option>
+                                                        @foreach($benhvien as $value)
+                                                        <option value="{{$value->id}}" {{($khunggio->id_benhvien == $value->id) ? 'selected': ''}}>{{$value->tenbenhvien}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                            <div class="form-actions right">
+                                                <a href="{{route('khunggio.index')}}" class="btn default">Cancel</a>
+                                                <button type="submit" class="btn blue">
+                                                    <i class="fa fa-check"></i> Save</button>
+                                            </div>
+                                        </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-        </ul>
-    </div>
-@endif
-
-
-{!! Form::model($khunggio, ['method' => 'PATCH','route' => ['khunggio.update', $khunggio->id]]) !!}
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong> Tên khung giờ</strong>
-            {!! Form::text('khunggio', null, array('placeholder' => 'Khung giờ','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Address:</strong>
-            <br/>
-            <select name="id_benhvien" class="browser-default custom-select">
-                @foreach($benhvien as $value)
-                <option value="{{$value->id}}" {{($khunggio->id_benhvien == $value->id) ? 'selected' :'' }} >{{$value->tenbenhvien}}</option>  
-                @endforeach
-            </select>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="form-group">
-            <strong> Giới hạn lượt đặt</strong>
-            {!! Form::text('gioihanluongdat', null, array('placeholder' => 'Số lượng','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
 </div>
-{!! Form::close() !!}
-</div>
-</div>
-
 @endsection

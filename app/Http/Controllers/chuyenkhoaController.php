@@ -9,19 +9,19 @@ use Illuminate\Support\Facades\DB;
 
 class chuyenkhoaController extends Controller
 {
-    // function __construct()
-    // {
-    //      $this->middleware('permission:ck-list|ck-create|ck-edit|ck-delete', ['only' => ['index','store']]);
-    //      $this->middleware('permission:ck-create', ['only' => ['create','store']]);
-    //      $this->middleware('permission:ck-edit', ['only' => ['edit','update']]);
-    //      $this->middleware('permission:ck-delete', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+         $this->middleware('permission:chuyenkhoa-list|chuyenkhoa-create|chuyenkhoa-edit|chuyenkhoa-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:chuyenkhoa-create', ['only' => ['create','store']]);
+         $this->middleware('permission:chuyenkhoa-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:chuyenkhoa-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         // code phan trang
-        $chuyenkhoa = chuyenkhoa::orderBy('id','ASC')->paginate(5);
+        $chuyenkhoa = chuyenkhoa::orderBy('id','ASC')->paginate(7);
         return view('chuyenkhoa.index',compact('chuyenkhoa'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 7);
     }
     public function create()
     {

@@ -1,9 +1,7 @@
 @extends('pages.layout.layouts')
 
 @section('content')
-<!-- BEGIN PAGE BASE CONTENT -->
 <div class="page-content-wrapper">
-<!-- BEGIN CONTENT BODY -->
 <div class="page-content">
 <div class="row">
         <div class="col-md-12">
@@ -13,10 +11,9 @@
                         <div class="portlet box green">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-gift"></i>Form Actions On Bottom </div>
+                                    <i class="fa fa-gift"></i>Thêm bác sĩ </div>
                             </div>
                             <div class="portlet-body form">
-                               <!-- BEGIN FORM-->
                                @if (count($errors) > 0)
                                 <div class="alert alert-danger">
                                 <ul>
@@ -33,8 +30,9 @@
                                 @endif
                                <form action="{{route('bacsi.store')}}" method="post" class="horizontal-form">
                                    @csrf
+                                  
                                     <div class="form-body">
-                                        <h3 class="form-section">Person Info</h3>
+                                        <h3 class="form-section">Nhập thông tin</h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -42,14 +40,12 @@
                                                     <input  name = "tenbacsi" type="text" id="hovaten" class="form-control" placeholder="Họ và tên">
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label  class="control-label">Học vị</label>
-                                                    <input name="hocvi" type="text" id="sodienthoai" class="form-control" placeholder="Số điện thoại">
+                                                    <input name="hocvi" type="text"  class="form-control" placeholder="Học vị">
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                             <div class="col-md-6">
                                                     <div class="form-group">
                                                     <label class="control-label">Bệnh viện</label>

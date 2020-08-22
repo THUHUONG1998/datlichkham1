@@ -18,98 +18,7 @@ User Profile
     <div class="page-content-wrapper">
         <div class="page-content">
             <div class="page-head">
-                <div class="page-title">
-                    <h1>New User Profile | Account
-                        <small>user account page</small>
-                    </h1>
-                </div>
-                <div class="page-toolbar">
-                    <div class="btn-group btn-theme-panel">
-                        <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-settings"></i>
-                        </a>
-                        <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <h3>THEME</h3>
-                                    <ul class="theme-colors">
-                                        <li class="theme-color theme-color-default" data-theme="default">
-                                            <span class="theme-color-view"></span>
-                                            <span class="theme-color-name">Dark Header</span>
-                                        </li>
-                                        <li class="theme-color theme-color-light active" data-theme="light">
-                                            <span class="theme-color-view"></span>
-                                            <span class="theme-color-name">Light Header</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-8 col-sm-8 col-xs-12 seperator">
-                                    <h3>LAYOUT</h3>
-                                    <ul class="theme-settings">
-                                        <li> Theme Style
-                                            <select class="layout-style-option form-control input-small input-sm">
-                                                <option value="square">Square corners</option>
-                                                <option value="rounded" selected="selected">Rounded corners</option>
-                                            </select>
-                                        </li>
-                                        <li> Layout
-                                            <select class="layout-option form-control input-small input-sm">
-                                                <option value="fluid" selected="selected">Fluid</option>
-                                                <option value="boxed">Boxed</option>
-                                            </select>
-                                        </li>
-                                        <li> Header
-                                            <select class="page-header-option form-control input-small input-sm">
-                                                <option value="fixed" selected="selected">Fixed</option>
-                                                <option value="default">Default</option>
-                                            </select>
-                                        </li>
-                                        <li> Top Dropdowns
-                                            <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
-                                                <option value="light">Light</option>
-                                                <option value="dark" selected="selected">Dark</option>
-                                            </select>
-                                        </li>
-                                        <li> Sidebar Mode
-                                            <select class="sidebar-option form-control input-small input-sm">
-                                                <option value="fixed">Fixed</option>
-                                                <option value="default" selected="selected">Default</option>
-                                            </select>
-                                        </li>
-                                        <li> Sidebar Menu
-                                            <select class="sidebar-menu-option form-control input-small input-sm">
-                                                <option value="accordion" selected="selected">Accordion</option>
-                                                <option value="hover">Hover</option>
-                                            </select>
-                                        </li>
-                                        <li> Sidebar Position
-                                            <select class="sidebar-pos-option form-control input-small input-sm">
-                                                <option value="left" selected="selected">Left</option>
-                                                <option value="right">Right</option>
-                                            </select>
-                                        </li>
-                                        <li> Footer
-                                            <select class="page-footer-option form-control input-small input-sm">
-                                                <option value="fixed">Fixed</option>
-                                                <option value="default" selected="selected">Default</option>
-                                            </select>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <a href="index.html">Home</a>
-                    <i class="fa fa-circle"></i>
-                </li>
-                <li>
-                    <span class="active">User</span>
-                </li>
-            </ul>
             <div class="row">
                 <div class="col-md-12">
                     <div class="profile-sidebar">
@@ -133,37 +42,15 @@ User Profile
                             <div class="profile-usermenu">
                                 <ul class="nav">
                                     <li>
-                                        <a href="page_user_profile_1.html">
-                                            <i class="icon-home"></i> Overview </a>
+                                    @foreach(Auth::user()->getRoleNames() as $v)
+                                                    <p class="text-muted text-center">{{$v}}</p>
+                                                @endforeach
                                     </li>
-                                    <li class="active">
-                                        <a href="page_user_profile_1_account.html">
-                                            <i class="icon-settings"></i> Account Settings </a>
-                                    </li>
-                                    <li>
-                                        <a href="page_user_profile_1_help.html">
-                                            <i class="icon-info"></i> Help </a>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
-                        <div class="portlet light bordered">
-                            <div class="row list-separated profile-stat">
-                                <div class="col-md-4 col-sm-4 col-xs-6">
-                                    <div class="uppercase profile-stat-title"> 37 </div>
-                                    <div class="uppercase profile-stat-text"> Projects </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 col-xs-6">
-                                    <div class="uppercase profile-stat-title"> 51 </div>
-                                    <div class="uppercase profile-stat-text"> Tasks </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 col-xs-6">
-                                    <div class="uppercase profile-stat-title"> 61 </div>
-                                    <div class="uppercase profile-stat-text"> Uploads </div>
-                                </div>
-                            </div>
-                            
-                        </div>
+                        
                     </div>
                     <div class="profile-content">
                         <div class="row">
@@ -172,16 +59,8 @@ User Profile
                                     <div class="portlet-title tabbable-line">
                                         <div class="caption caption-md">
                                             <i class="icon-globe theme-font hide"></i>
-                                            <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
+                                            <span class="caption-subject font-blue-madison bold uppercase">Thông tin</span>
                                         </div>
-                                        <ul class="nav nav-tabs">
-                                            <li class="{{count($errors) > 0 ? '':'active'}}">
-                                                <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
-                                            </li>
-                                            <li class="{{count($errors) > 0 ? 'active':''}}">
-                                                <a href="#tab_1_3" data-toggle="tab">Change Password</a>
-                                            </li>
-                                        </ul>
                                     </div>
                                     <div class="portlet-body">
                                         <div class="tab-content">
@@ -200,13 +79,6 @@ User Profile
                                                     <div class="form-group">
                                                         <label name = "diachi" class="control-label">Địa chỉ</label>
                                                         <input type="text" placeholder="Địa chỉ" class="form-control" value="{{$profile->diachi}}"/> </div>
-                                                    
-                                                    <div class="form-group">
-                                                        <label name= "danhso" class="control-label">Danh số</label>
-                                                        <input type="text" placeholder="Danh số" class="form-control" value="{{$profile->manhanvien}}"/> </div>
-                                                    <div class="form-group">
-                                                        <label name= "ngaysinh" class="control-label">Ngày sinh</label>
-                                                        <input class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{$profile->ngaysinh}}">
                                                     <div class="form-group">
                                                         <label class="control-label">Password</label>
                                                         <input name = "password" type="password" placeholder="Password" class="form-control" /> </div>
@@ -221,32 +93,11 @@ User Profile
                                                             <option value="0">Nữ</option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Ghi chú</label>
-                                                        <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
-                                                    </div>
+                                                    
                                                     <div class="margiv-top-10">
                                                         
-                                                        <button type ="submit" class="btn green">Save Changes</button>
-                                                        <a href="javascript:;" class="btn default"> Cancel </a>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane {{count($errors) > 0 ? 'active':''}}" id="tab_1_3">
-                                                @include('pages.layout.errors')
-                                                <form action="{{route('changePassword')}}">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Current Password</label>
-                                                        <input name = "old_password" type="password" class="form-control" /> </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">New Password</label>
-                                                        <input type="password" name = "new_password" class="form-control" /> </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Re-type New Password</label>
-                                                        <input name ="confirm-password"  type="password" class="form-control" /> </div>
-                                                    <div class="margin-top-10">
-                                                        <button class="btn green"> Change Password </button>
-                                                        <a href="javascript:;" class="btn default"> Cancel </a>
+                                                        <button type ="submit" class="btn green">Thay đổi</button>
+                                                      
                                                     </div>
                                                 </form>
                                             </div>

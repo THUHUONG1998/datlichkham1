@@ -2,36 +2,15 @@
 @section('content')
             <div class="page-content-wrapper">
                 <div class="page-content">
-                    <div class="page-head">
-                        <div class="page-title">
-                            <h1>Users Datatables
-                                <small>users datatable samples</small>
-                            </h1>
-                        </div>
-                    </div>
-                    <ul class="page-breadcrumb breadcrumb">
-                        <li>
-                            <a href="index.html">Home</a>
-                            <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <a href="#">Tables</a>
-                            <i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <span class="active">Users Tables</span>
-                        </li>
-                    </ul>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class="icon-social-dribbble font-green"></i>
-                                        <span class="caption-subject font-green bold uppercase">Simple Table</span>
+                                        <span class="caption-subject font-green bold uppercase">Bảng bệnh viện</span>
                                     </div>
                                     <div class="pull-right">
-                                        <a class="btn btn-success" href="{{ route('benhvien.create') }}">Create new hospital</a>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
@@ -43,7 +22,7 @@
                                                   <th>Tên Bệnh Viện</th>
                                                   <th>Địa chỉ</th>
                                                   <th>Số điện thoại</th>
-                                                  <th width="280px">Action</th>
+                                                  <th width="200px">Action</th>
                                                 </tr>
                                                 @foreach ($benhvien as $key => $value)
                                                   <tr>

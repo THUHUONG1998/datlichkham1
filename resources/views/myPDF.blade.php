@@ -1,8 +1,9 @@
+@foreach($data as $value)
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-	<title>Hi</title>
+	<title>{{$value['hovaten']}}</title>
 </head>
 <style>
 body {
@@ -10,12 +11,14 @@ body {
 }
 </style>
 <body>
-	<h1>Xin chào - {{ $note }}</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<p><i>Bệnh viện: {{$value['benhvien']}}</i></p>
+<p><i>Chuyên khoa: {{$value['chuyenkhoa']}}</i></p>
+	<h1>Đơn thuốc</h1>
+	<p>Họ và tên: {{ $value['hovaten'] }}</p>
+	<p>{{$value['donthuoc']}}</p>
+ <p> Hẹn Tái khám: {{$value['ngaytaikham']}}</p>
 </body>
+@break
+@endforeach
 </html>

@@ -14,6 +14,13 @@ use App\chitietkham;
 
 class chitietbenhnhanController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:chitietbenhnhan-list|chitietbenhnhan-create|chitietbenhnhan-edit|chitietbenhnhan-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:chitietbenhnhan-create', ['only' => ['create','store']]);
+         $this->middleware('permission:chitietbenhnhan-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:chitietbenhnhan-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +28,11 @@ class chitietbenhnhanController extends Controller
      */
     public function index(Request $request)
     {
-        $chitietbenhnhanchoray = chitietbenhnhan::orderBy('id','ASC')->groupBy('id_benhnhan')->where('id_benhvien',1)->paginate(5);
-        $chitietbenhnhanphucngoc = chitietbenhnhan::orderBy('id','ASC')->groupBy('id_benhnhan')->where('id_benhvien',2)->paginate(5);
+        $chitietbenhnhanchoray = chitietbenhnhan::orderBy('id','ASC')->groupBy('id_benhnhan')->where('id_benhvien',1)->paginate(20);
+        $chitietbenhnhanphucngoc = chitietbenhnhan::orderBy('id','ASC')->groupBy('id_benhnhan')->where('id_benhvien',2)->paginate(20);
         //  $benhvien = DB::table('benhvien')->get();
           return view('chitietbenhnhan.index',compact('chitietbenhnhanchoray','chitietbenhnhanphucngoc'))
-              ->with('i', ($request->input('page', 1) - 1) * 5);
+              ->with('i', ($request->input('page', 1) - 1) * 20);
     }
 
     /**
@@ -54,7 +61,7 @@ class chitietbenhnhanController extends Controller
     public function luuchitietkham(Request $request, $id)
     {
         $this->validate($request, [
-            'trieuchung'=>'required',
+            'chuandoan'=>'required',
             'donthuoc'=>'required',
             
         ],
@@ -64,19 +71,22 @@ class chitietbenhnhanController extends Controller
         ],
         [
           
-            'trieuchung'=> 'Triệu chứng',
+            'chuandoan'=> 'Chuẩn đoán',
             'donthuoc'=> 'Đơn thuốc',
         ]);
 
         $input = $request->all();
+        
         $chitietbenhnhan = chitietbenhnhan::find($id);
+        $input['id_benhnhan'] = $chitietbenhnhan->id_benhnhan;
         $input['id_chitietbenhnhan'] = $chitietbenhnhan->id;
     //    $input['id_user'] = Auth::user()->id;
         
         $chitietkham = chitietkham::create($input);
+       // $chitietkham = chitietkham::find($id);
         // dd($chitietkham);
         // die();
-        return redirect()->route('chitietbenhnhan.index')
+        return redirect()->route('donthuoc', $chitietkham->id)
                         ->with('success','patient created successfully');
     }
 

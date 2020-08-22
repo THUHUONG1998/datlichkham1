@@ -3,23 +3,14 @@
 @section('content')
 <div class="page-content-wrapper">
     <div class="page-content">
-        <div class="page-head">
-            <div class="page-title">
-                <h1>Chuyên khoa Table
-                </h1>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="icon-social-dribbble font-green"></i>
-                            <span class="caption-subject font-green bold uppercase">Simple Table</span>
+                            <span class="caption-subject font-green bold uppercase">Bảng chuyên khoa</span>
                         </div>
-                        <div class="pull-right">
-                                <a class="btn btn-success" href="{{ route('chuyenkhoa.create') }}">Create new Chuyên khoa</a>
-                            </div>
                     </div>
                     <div class="portlet-body">
                         <div class="table-scrollable">

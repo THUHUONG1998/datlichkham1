@@ -1,56 +1,67 @@
 @extends('pages.layout.layouts')
-@section('title')
-Chỉnh sửa thông tin Permission
-@endsection
-<link rel="stylesheet" href="../css/customer.css">
+
 @section('content')
 <div class="page-content-wrapper">
 <div class="page-content">
 <div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Edit Permission</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('permission.index') }}"> Back</a>
+        <div class="col-md-12">
+            <div class="tabbable-line boxless tabbable-reversed">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_0">
+                        <div class="portlet box green">
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-gift"></i>Sửa Permission </div>
+                            </div>
+                            <div class="portlet-body form">
+                               <form action="{{route('permission.update', $permission->id)}}" method="post" class="horizontal-form">
+                               @csrf
+                               @method('PATCH')
+                                    <div class="form-body">
+                                        <h3 class="form-section">Person Info</h3>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Tên Permission</label>
+                                                    <input value="{{$permission->name}}"  name = "name" type="text" class="form-control"  value="{{old('username')}}">
+                                                </div>
+                                                @error('name')
+                                                    <p style="color: red;"><i><b>{{$message}}</b></i></p>
+                                                @enderror
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Guard_name</label>
+                                                    <input value="{{$permission->guard_name}}" name="guard_name" type="text"  class="form-control"  value="{{old('guard_name')}}" readonly>
+                                                </div>
+                                               
+                                            </div>
+                                         </div>         
+                                        <div class="form-actions right">
+                                            <button type="submit" class="btn blue"> <i class="fa fa-check"></i> Save</button>
+                                            <a href="{{route('benhvien.index')}}" class="btn default"> Cancel </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
-@if (count($errors) > 0)
-  <div class="alert alert-danger">
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-    <ul>
-       @foreach ($errors->all() as $error)
-         <li>{{ $error }}</li>
-       @endforeach
-    </ul>
-  </div>
-@endif
-
-
-{!! Form::model($permission, [ 'method' => 'PATCH','route' => ['permission.update', $permission->id]]) !!}
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Guard_Name:</strong>
-            {!! Form::text('guard_name', null, array('placeholder' => 'Guard_Name','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
 </div>
-{!! Form::close() !!}
-</div>
-</div>
-
-
+   
 @endsection

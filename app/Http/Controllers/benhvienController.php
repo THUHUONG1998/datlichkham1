@@ -7,13 +7,13 @@ use App\benhvien;
 
 class benhvienController extends Controller
 {
-    // function __construct()
-    // {
-    //      $this->middleware('permission:bv-list|bv-create|bv-edit|bv-delete', ['only' => ['index','store']]);
-    //      $this->middleware('permission:bv-create', ['only' => ['create','store']]);
-    //      $this->middleware('permission:bv-edit', ['only' => ['edit','update']]);
-    //      $this->middleware('permission:bv-delete', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+         $this->middleware('permission:benhvien-list|benhvien-create|benhvien-edit|benhvien-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:benhvien-create', ['only' => ['create','store']]);
+         $this->middleware('permission:benhvien-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:benhvien-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         // code phan trang

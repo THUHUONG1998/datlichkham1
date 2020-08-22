@@ -11,14 +11,14 @@
                         <div class="portlet box green">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-gift"></i>Form Actions On Bottom </div>
+                                    <i class="fa fa-gift"></i>Sửa bệnh viện </div>
                             </div>
                             <div class="portlet-body form">
                                <form action="{{route('benhvien.update', $benhvien->id)}}" method="post" class="horizontal-form">
                                @csrf
                                @method('PATCH')
                                     <div class="form-body">
-                                        <h3 class="form-section">Person Info</h3>
+                                        <h3 class="form-section">Nhập thông tin</h3>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">

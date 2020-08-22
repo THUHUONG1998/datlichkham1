@@ -1,29 +1,10 @@
 @extends('pages.layout.layouts')
 @section('title')
-Thêm một bệnh nhân mới
+Gửi email
 @endsection
 @section('content')
     <div class="page-content-wrapper">
                 <div class="page-content">
-                    <div class="page-head">
-                        <!-- BEGIN PAGE TITLE -->
-                        <div class="page-title">
-                            <h1>Form Layouts
-                                <small>form layouts</small>
-                            </h1>
-                        </div>
-                        <!-- END PAGE TITLE -->
-                        <!-- BEGIN PAGE TOOLBAR -->
-                        <div class="page-toolbar">
-                            <!-- BEGIN THEME PANEL -->
-                            <div class="btn-group btn-theme-panel">
-                                <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon-settings"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                  
                     <div class="row">
                         <div class="col-md-12">
                             <div class="tabbable-line boxless tabbable-reversed">
@@ -32,7 +13,7 @@ Thêm một bệnh nhân mới
                                         <div class="portlet box green">
                                             <div class="portlet-title">
                                                 <div class="caption">
-                                                    <i class="fa fa-gift"></i>Form Actions On Bottom </div>
+                                                    <i class="fa fa-gift"></i>Gửi email thông báo </div>
                                                 <div class="tools">
                                                     <a href="javascript:;" class="collapse"> </a>
                                                     <a href="#portlet-config" data-toggle="modal" class="config"> </a>
@@ -60,19 +41,9 @@ Thêm một bệnh nhân mới
                                                                 <input value="{{$chitietbenhnhan->benhnhan->email}}" name="email" type="email" class="form-control spinner" placeholder="Email"> </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-md-3 control-label">Số điện thoại</label>
-                                                            <div class="col-md-4">
-                                                                <input  value="{{$chitietbenhnhan->benhnhan->ngaykham}}" name= "sodienthoai" type="text" class="form-control spinner" placeholder="Số điện thoại"> </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 control-label">Ngày sinh</label>
-                                                            <div class="col-md-4">
-                                                            <input  value="{{$chitietbenhnhan->benhnhan->ngaysinh}}" class="form-control spinner" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}"></div>
-                                                        </div>
-                                                        <div class="form-group">
                                                             <label class="col-md-3 control-label">Ngày khám</label>
                                                             <div class="col-md-4">
-                                                            <input value="{{$chitietbenhnhan->ngaykham}}" class="form-control spinner" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  /></div>
+                                                            <input value="{{date_format(date_create($chitietbenhnhan->ngaykham), "d-m-Y")}}" class="form-control spinner" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  /></div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Bệnh viện</label>
@@ -130,26 +101,18 @@ Thêm một bệnh nhân mới
                                                                 @enderror 
                                                             </div>
                                                         </div>
-                                                        <div class="form-group last">
-                                                            <label class="col-md-3 control-label">Static Control</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static"> email@example.com </p>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="form-actions top">
                                                         <div class="row">
                                                             <div class="col-md-offset-3 col-md-9">
                                                                 <button type="submit" class="btn green">Gửi email</button>
-                                                                <a  class="btn default">Cancel</button>
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </form>
-                                                <!-- END FORM-->
                                             </div>
                                         </div>
-                                       
                                 </div>
                             </div>
                         </div>

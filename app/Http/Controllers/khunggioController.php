@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class khunggioController extends Controller
 {
-    // function __construct()
-    // {
-    //      $this->middleware('permission:kg-list|kg-create|kg-edit|kg-delete', ['only' => ['index','store']]);
-    //      $this->middleware('permission:kg-create', ['only' => ['create','store']]);
-    //      $this->middleware('permission:kg-edit', ['only' => ['edit','update']]);
-    //      $this->middleware('permission:kg-delete', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+         $this->middleware('permission:khunggio-list|khunggio-create|khunggio-edit|khunggio-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:khunggio-create', ['only' => ['create','store']]);
+         $this->middleware('permission:khunggio-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:khunggio-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         // code phan trang
@@ -36,19 +36,19 @@ class khunggioController extends Controller
         $this->validate($request, [
             'khunggio' => 'required',
             'id_benhvien' => 'required',
-            'gioihanluongdat' =>'integer|min:1',
+          
         ],
 
         [
             'required' => ':attribute không được bỏ trống',
             'integer' =>':attribute phải là số nguyên',
-            'min' => ':attribute phải lớn hơn 0'
+           
         ],
 
         [
             'khunggio' => 'Khung giờ',
             'id_benhvien' => 'Tên bệnh viện',
-            'gioihanluongdat' => 'giới hạn lượt đặt'
+            
         ]);
 
         
