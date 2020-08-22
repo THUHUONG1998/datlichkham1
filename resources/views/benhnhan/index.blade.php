@@ -6,17 +6,7 @@ Bảng bệnh nhân
 <div class="page-content-wrapper">
     <div class="page-content">
         <div class="page-head">
-        <form class="search-form" action="{{route('benhnhan.index')}}" method="GET">
-            {{ csrf_field() }}
-            <div class="input-group">
-                <input type="text" name = "key1" id = "key1" class="form-control input-sm" placeholder="Search..." name="query">
-                    <span class="input-group-btn">
-                        <a href="javascript:;" class="btn submit">
-                            <i class="icon-magnifier"></i>
-                        </a>
-                    </span>
-            </div>
-        </form>
+       
         </div>
         <div class="row">
             <div class="col-md-12">

@@ -33,24 +33,10 @@ class benhnhanController extends Controller
      */
     public function index(Request $request)
     {
-        $key1 = $request->get('key1');
-        if($key1)
-        {
-            $benhnhan = benhnhan::where('id','like','%'.$key1.'%')
-            ->where('hovaten','like','%'.$key1.'%')
-            ->orwhere('email','like','%'.$key1.'%')->paginate(5);
-          //  $data->appends(['key'=>$key]);
-        }
-        else
-        {
-            $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
-        }
-        // code phan trang
-        return view('benhnhan.index',compact('benhnhan'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
         $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
       //  $benhvien = DB::table('benhvien')->get();
-        
+        return view('benhnhan.index',compact('benhnhan'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -63,7 +49,7 @@ class benhnhanController extends Controller
         // $benhvien = DB::table('benhvien')->get();
         // $bacsi=DB::table('bacsi')->get();
         // $chuyenkhoa = DB::table('chuyenkhoa')->get();
-        $benhnhan=DB::table('benhnhan')->get();
+        $data=DB::table('users')->get();
       //  $khunggio=DB::table('khunggio')->get();
         return view('benhnhan.create',compact('data'));
     }
