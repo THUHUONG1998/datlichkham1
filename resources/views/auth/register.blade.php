@@ -61,19 +61,6 @@
             @enderror
         </div>
         <div class="input-group mb-3">
-          <input name="manhanvien" type="text" class="form-control @error('manhanvien') is-invalid @enderror" placeholder="Mã nhân viên">
-            <div class="input-group-append">
-            <div class="input-group-text">
-              
-            </div>
-          </div>
-          @error('manhanvien')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
-        <div class="input-group mb-3">
           <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Địa chỉ emai">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -102,8 +89,8 @@
         <div class="input-group mb-3">
           <select name = "gioitinh" class="form-control">
               <option value="" default>--Chọn giới tính--</option>
-              <option value="1">Nam</option>
-              <option value="0">Nữ</option>
+              <option value="1" {{($benhnhan->gioitinh == 1)? 'selected':'select'}}>Nam</option>
+              <option value="0" {{($benhnhan->gioitinh == 0)? 'selected':'select'}}>Nữ</option>
           </select>
           <div class="input-group-append">
             <div class="input-group-text">

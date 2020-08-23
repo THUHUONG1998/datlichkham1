@@ -14,6 +14,10 @@ Chỉnh sửa
                     <li>
                         <a href="#tab_1_3" data-toggle="tab"> Phòng khám Phúc Ngọc </a>
                     </li>
+                    
+                    <div class="pull-right">
+                    </div>
+                    
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1_1">
@@ -28,7 +32,7 @@ Chỉnh sửa
                         @endif
                         <div class="caption">
                             <i class="icon-social-dribbble font-green"></i>
-                            <span class="caption-subject font-green bold uppercase">Simple Table</span>
+                            <span class="caption-subject font-green bold uppercase">Bảng bệnh nhân</span>
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -55,6 +59,7 @@ Chỉnh sửa
                                             <td>{{$value->khunggio->khunggio}}</td>
                                             <td>    
                                                 <a class="btn btn-primary" href="{{ route('chitietkham',$value->id) }}">Chi tiết</a>
+                                                <a class="btn btn-success" href="{{ route('lichsu',$value->id) }}" >Lịch sử</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -80,10 +85,7 @@ Chỉnh sửa
                             <i class="icon-social-dribbble font-green"></i>
                             <span class="caption-subject font-green bold uppercase">Simple Table</span>
                         </div>
-                        <div class="actions">
-                            <a class="btn btn-success" href="{{ route('benhnhan.create') }}">Thêm bệnh nhân mới</a>
-                            
-                        </div>
+                      
                     </div>
                     <div class="portlet-body">
                         <div class="table-scrollable">
@@ -109,6 +111,7 @@ Chỉnh sửa
                                             <td>{{$value->khunggio->khunggio}}</td>
                                             <td>    
                                                 <a class="btn btn-primary" href="{{ route('chitietkham',$value->id) }}">Chi tiết</a>
+                                                <a class="btn btn-success" href="{{ route('lichsu',$value->id) }}" >Lịch sử</a>
                                             </td>
                                         </tr>
                                         @endforeach

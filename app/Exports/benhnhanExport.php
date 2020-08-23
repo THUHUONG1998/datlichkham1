@@ -13,14 +13,14 @@ class benhnhanExport implements FromView, WithEvents
     /**
     * @return \Illuminate\Support\Collection
     */
-    function __construct(string $id_benhvien)
-    {   
-        $this->id_benhvien = $id_benhvien;
-    }
+    // function __construct(string $id_benhvien)
+    // {   
+    //     $this->id_benhvien = $id_benhvien;
+    // }
     public function view(): View
     {
         return view('export.benhnhan', [
-            'benhnhan' => benhnhan::where('id_benhvien', $this->id_benhvien)->get()
+            'benhnhan' => benhnhan::all()
         ]);
     }
     public function registerEvents(): array

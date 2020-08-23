@@ -32,7 +32,7 @@ Bảng User
                                 </div>
                                 <div class="col-sm-10">
                                     <div class="pull-right">
-                                        <button class="btn btn-danger"  data-toggle="modal" data-target="#import">Import</button>
+                                    <button class="btn btn-warning"  data-toggle="modal" data-target="#exportuser">Export</button>
                                     </div>
                                 </div>
                             </div>
@@ -105,17 +105,17 @@ Bảng User
             </div>
         </div>
         <!-- modal-export -->
-        <div class="modal modal-danger fade" id="export" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal modal-danger fade" id="exportuser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                         <h4 class="modal-title text-center" id="myModalLabel">Thông báo</h4>
                     </div>
-                    <form action="{{route('export')}}" method="GET" enctype="multipart/form-data">
+                    <form action="{{route('exportuser')}}" method="GET" enctype="multipart/form-data">
                     {{csrf_field()}}
-                        <input type="date" name="start-date" class="form-control">
-                        <input type="date" name="end-date" class="form-control">
+                    
+                       
                         <div class="modal-footer">
                             <button class="btn btn-success">Export User Data</button>
                         </div>

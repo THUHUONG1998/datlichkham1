@@ -98,7 +98,6 @@ Thêm một bệnh nhân mới
                                                     <div class="form-group">
                                                         <label class="control-label">Ngày Khám</label>
                                                         <input class="form-control" data-provide="datepicker" name="ngaykham" autocomplete="off" id="ngaykham"  />
-                                                        <!-- <input name = "ng" type="text" class="form-control" placeholder="dd/mm/yyyy"> </div> -->
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">

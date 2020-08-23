@@ -14,19 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-
 
 Auth::routes();
 
 
 
-Route::group(['prefix'=>'admin'], function() {
-    Route::group(['middleware' => ['auth']], function() {
-        Route::get('/profile', 'HomeController@userProFile')->name('profile');
+Route::group(['middleware' => ['auth']], function() {
+    Route::group(['prefix'=>'admin'], function() {
+        Route::get('', 'HomeController@userProFile')->name('profile');
         Route::resource('users','UsersController');
-        Route::get('', 'benhnhanController@index')->name('home');
         Route::get('deleteRole', 'RoleController@destroy1')->name('roles.destroy1');
         Route::get('deletePermission','Permission@destroy')->name('permission.destroy');
         Route::resource('roles','RoleController');
@@ -40,31 +38,31 @@ Route::group(['prefix'=>'admin'], function() {
         Route::resource('email','EmailController');
         Route::resource('chitietbenhnhan', 'chitietbenhnhanController');
         Route::resource('benhnhan','benhnhanController');
-        
-        
-    });
-    Route::post('cropie', 'UsersController@uploadImage')->name('croppie');
-    Route::get('changePassword', 'HomeController@changePassword')->name('changePassword');
-    Route::get('export', 'MyController@export')->name('export');
-    Route::get('export-bacsi', 'MyController@exportBS')->name('exportBS');
-    Route::get('export-benhnhan', 'MyController@exportBN')->name('exportBN');
-    Route::get('export-benhnhantheongay', 'MyController@exportBN3')->name('exportBN3');
-    Route::get('importExportView', 'MyController@importExportView');
-    Route::post('import', 'MyController@import')->name('import');
-    Route::post('import-bacsi', 'MyController@importBS')->name('importBS');
-    Route::post('showchuyenkhoa','bacsiController@showChuyenKhoainBenhVien')->name('show-chuyenkhoa');
-    Route::post('showchuyenkhoabn','benhnhanController@showChuyenKhoainBenhNhan')->name('show-chuyenkhoainbenhnhan');
-    Route::post('showbacsi','benhnhanController@showBacSiinBenhNhan')->name('show-bacsi');
-    Route::post('showkhunggio','benhnhanController@showKhungGioinBenhNhan')->name('show-khunggioinbenhnhan');
-  
-    Route::get('noidung/{id}', 'benhnhanController@noidung')->name('noidung');
-    Route::post('guimail/{id}', 'benhnhanController@guimail')->name('guimail');
-    Route::get('datlichkham/{id}', 'benhnhanController@datlichkham')->name('datlichkham');
-    Route::post('luulichkham/{id}', 'benhnhanController@luulichkham')->name('luulichkham');
-    Route::get('chitietkham/{id}', 'chitietbenhnhanController@chitiet')->name('chitietkham');
-    Route::post('luuchitietkham/{id}', 'chitietbenhnhanController@luuchitietkham')->name('luuchitietkham');
-    Route::get('generate-pdf/{id}','PDFController@generatePDF')->name('exportdonthuoc');
-    Route::get('donthuoc/{id}','PDFController@index')->name('donthuoc');
-    Route::get('lichsu/{id}','benhnhanController@lichsu')->name('lichsu');
 
+        Route::post('cropie', 'UsersController@uploadImage')->name('croppie');
+        Route::get('changePassword', 'HomeController@changePassword')->name('changePassword');
+        Route::get('export', 'MyController@export')->name('export');
+        Route::get('export-bacsi', 'MyController@exportBS')->name('exportBS');
+        Route::get('export-benhnhan', 'MyController@exportBN')->name('exportbenhnhan');
+        Route::get('export-benhnhantheongay', 'MyController@exportBN3')->name('exportBN3');
+        Route::get('importExportView', 'MyController@importExportView');
+        Route::post('import', 'MyController@import')->name('import');
+        Route::post('import-bacsi', 'MyController@importBS')->name('importBS');
+        Route::post('showchuyenkhoa','bacsiController@showChuyenKhoainBenhVien')->name('show-chuyenkhoa');
+        Route::post('showchuyenkhoabn','benhnhanController@showChuyenKhoainBenhNhan')->name('show-chuyenkhoainbenhnhan');
+        Route::post('showbacsi','benhnhanController@showBacSiinBenhNhan')->name('show-bacsi');
+        Route::post('showkhunggio','benhnhanController@showKhungGioinBenhNhan')->name('show-khunggioinbenhnhan');
+    
+        Route::get('noidung/{id}', 'benhnhanController@noidung')->name('noidung');
+        Route::post('guimail/{id}', 'benhnhanController@guimail')->name('guimail');
+        Route::get('datlichkham/{id}', 'benhnhanController@datlichkham')->name('datlichkham');
+        Route::post('luulichkham/{id}', 'benhnhanController@luulichkham')->name('luulichkham');
+        Route::get('chitietkham/{id}', 'chitietbenhnhanController@chitiet')->name('chitietkham');
+        Route::post('luuchitietkham/{id}', 'chitietbenhnhanController@luuchitietkham')->name('luuchitietkham');
+        Route::get('generate-pdf/{id}','PDFController@generatePDF')->name('exportdonthuoc');
+        Route::get('donthuoc/{id}','PDFController@index')->name('donthuoc');
+        Route::get('lichsu/{id}','benhnhanController@lichsu')->name('lichsu');
+        Route::get('export-user', 'MyController@exportuser')->name('exportuser');
+    });
 });
+

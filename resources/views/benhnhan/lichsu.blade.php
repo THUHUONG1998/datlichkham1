@@ -16,6 +16,9 @@
                                         <i class=" icon-layers font-green"></i>
                                         <span class="caption-subject font-green bold uppercase">Lịch sử</span>
                                     </div>
+                                    <div class="pull-right">
+                                        <a href = "{{route('benhnhan.index')}}" class="btn default">Trở về</a>
+                                    </div>
                                 </div>
                                 <div class="portlet-body">
                                     <div class="mt-element-list">
@@ -136,6 +139,8 @@
                                                 <?php $i++; ?>
                                              @endforeach
                                             </ul>
+                                            
+                                       
                                         </div>
                                     </div>
                                 </div>

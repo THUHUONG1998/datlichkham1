@@ -33,8 +33,20 @@ class benhnhanController extends Controller
      */
     public function index(Request $request)
     {
-        $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
-      //  $benhvien = DB::table('benhvien')->get();
+        $key1 = $request->get('key1');
+        if($key1)
+        {
+            $benhnhan = benhnhan::where('id','like','%'.$key1.'%')
+            ->where('sodienthoai','like','%'.$key1.'%')
+            ->orwhere('hovaten','like','%'.$key1.'%')
+            ->orwhere('email','like','%'.$key1.'%')->paginate(5);
+          //  $data->appends(['key'=>$key]);
+        }
+        else
+        {
+            $benhnhan = benhnhan::orderBy('id','ASC')->paginate(5);
+        }
+        // code phan trang
         return view('benhnhan.index',compact('benhnhan'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

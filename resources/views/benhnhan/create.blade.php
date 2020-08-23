@@ -63,7 +63,7 @@ Thêm một bệnh nhân mới
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Ngày tháng năm sinh</label>
-                                                        <input class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}">
+                                                        <input class="form-control" data-provide="datepicker" name="ngaysinh" data-toggle="datepicker" autocomplete="off" id="ngaysinh"  value="{{old('ngaysinh')}}" placeholder="dd-mm-yyyy">
                                                         <!-- <input name = "ng" type="text" class="form-control" placeholder="dd/mm/yyyy"> </div> -->
                                                     </div>
                                                 </div>
@@ -73,8 +73,9 @@ Thêm một bệnh nhân mới
                                                     <div class="form-group">
                                                         <label class="control-label">Giới tính</label>
                                                         <select name="gioitinh" class="form-control">
-                                                            <option value="1">Male</option>
-                                                            <option value="0">Female</option>
+                                                            <option value=" " default>--Chọn giới tính--</option>
+                                                            <option value="1">Nam</option>
+                                                            <option value="0">Nữ</option>
                                                         </select>
                                                     </div>
                                                 </div>

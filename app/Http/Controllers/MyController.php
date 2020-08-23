@@ -27,13 +27,13 @@ class MyController extends Controller
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function export(Request $request) 
-    {
-        $start_date = date_format(date_create($request->input('start-date')),"Y-m-d");
-        $end_date = date_format(date_create($request->input('end-date')),"Y-m-d");
+    // public function export(Request $request) 
+    // {
+    //     $start_date = date_format(date_create($request->input('start-date')),"Y-m-d");
+    //     $end_date = date_format(date_create($request->input('end-date')),"Y-m-d");
         
-        return Excel::download(new UsersExport($start_date, $end_date), 'users.xlsx');
-    }
+    //     return Excel::download(new UsersExport($start_date, $end_date), 'users.xlsx');
+    // }
    
     public function exportBS(Request $request) 
     {
@@ -59,16 +59,19 @@ class MyController extends Controller
     }
     public function exportBN(Request $request) 
     {
-        $id_benhvien = $request->id_benhvien;
-        return Excel::download(new benhnhanExport($id_benhvien), 'benhnhan.xlsx');
+        return Excel::download(new benhnhanExport(), 'benhnhan.xlsx');
     }
     public function exportBN3(Request $request) 
     {
         $start_date = date_format(date_create($request->input('start-date')),"Y-m-d");
         $end_date = date_format(date_create($request->input('end-date')),"Y-m-d");
-        // $benhnhan1 = benhnhan::whereBetween('ngaykham', [$start_date, $end_date])->get();
+        $benhnhan1 = benhnhan::whereBetween('ngaykham', [$start_date, $end_date])->get();
         // dd($benhnhan1);
         
         return Excel::download(new benhnhandateExport($start_date, $end_date), 'benhnhan.xlsx');
+    }
+    public function exportuser(Request $request) 
+    {
+        return Excel::download(new UsersExport(), 'user.xlsx');
     }
 }

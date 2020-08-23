@@ -52,7 +52,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255'],
             'hovaten'=> ['required', 'string', 'max:255'],
-            'manhanvien'=> ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'sodienthoai'=>['required', 'string', 'max:255'],
@@ -63,7 +62,6 @@ class RegisterController extends Controller
         [
             'username' => 'UserName',
             'hovaten' => 'Họ và tên',
-            'manhanvien'=>'Mã nhân viên',
             'emai'=>'Địa chỉ emai',
             'sodienthoai'=>'Số điện thoại',
             'password'=>'Password',
@@ -82,7 +80,6 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'hovaten'=>$data['hovaten'],
-            'manhanvien'=>$data['manhanvien'],
             'sodienthoai'=>$data['sodienthoai'],
             'password' => Hash::make($data['password']),
         ]);

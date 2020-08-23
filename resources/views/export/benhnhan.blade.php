@@ -6,10 +6,6 @@
         <th>Giới tính</th>
         <th>Số điện thoại</th>
         <th>Địa chỉ email</th>
-        <th>Ngày khám</th>
-        <th>Chuyên khoa</th>
-        <th>Chuyên khoa</th>
-        <th>Khung giờ</th>
     </tr>
     </thead>
     <tbody>
@@ -20,11 +16,6 @@
             <td>{{($value->gioitinh == 0)? 'Nam':'Nữ'}}</td>
             <td>{{ $value->sodienthoai }}</td>
             <td>{{ $value->email }}</td>
-            <td>{{ $value->ngaykham }}</td>
-            <td>{{ $value->chuyenkhoa->tenchuyenkhoa }}</td>
-            <td>{{ $value->bacsi->tenbacsi }}</td>
-            <td>{{ $value->khunggio->khunggio }}</td>
-            <td>{{ $value->hocvi }}</td>
         </tr>
     @endforeach
     </tbody>
