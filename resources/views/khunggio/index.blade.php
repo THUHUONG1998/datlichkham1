@@ -25,6 +25,7 @@ Bảng khung giờ
                                         <th>STT</th>
                                         <th>Khung giờ</th>
                                         <th>Tên Bệnh Viện</th>
+                                        <th>Giới hạn</th>
                                         <th width="280px">Action</th>
                                     </tr>
                                 </thead>
@@ -34,6 +35,7 @@ Bảng khung giờ
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $value->khunggio }}</td>
                                         <td>{{ $value->benhvien->tenbenhvien}}</td>
+                                        <td>{{ $value->gioihan}}</td>
                                         <td>
                                             <a class="btn btn-primary" href="{{ route('khunggio.edit',$value->id) }}">Edit</a>
                                         </td>

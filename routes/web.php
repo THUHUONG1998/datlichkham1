@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('generate-pdf/{id}','PDFController@generatePDF')->name('exportdonthuoc');
         Route::get('donthuoc/{id}','PDFController@index')->name('donthuoc');
         Route::get('lichsu/{id}','benhnhanController@lichsu')->name('lichsu');
+        Route::get('lichsu1/{id}','benhnhanController@lichsu1')->name('lichsu1');
         Route::get('export-user', 'MyController@exportuser')->name('exportuser');
     });
 });

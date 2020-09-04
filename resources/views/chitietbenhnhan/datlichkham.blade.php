@@ -114,7 +114,7 @@ Thêm một bệnh nhân mới
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Chuyên Khoa</label>
-                                                                <select name="id_chuyenkhoa" class="form-control">
+                                                                <select id="id_chuyenkhoa" name="id_chuyenkhoa" class="form-control">
                                                                     <option value="">--Chọn chuyên khoa--</option>
                                                                 </select>
                                                             </div>
@@ -123,14 +123,14 @@ Thêm một bệnh nhân mới
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Khung giờ</label>
                                                                 <select name="id_khunggio" class="form-control">
-                                                                    <option value="" default>--Chọn khung giờ--</option>
+                                                                    <option name="id_khunggio" value="" default>--Chọn khung giờ--</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Bác sĩ</label>
-                                                                <select name="id_bacsi" class="form-control">
+                                                                <select id="id_bacsi" name="id_bacsi" class="form-control">
                                                                 <option value="" default>--Chọn bác sĩ--</option>
                                                                    
                                                                 </select>
@@ -177,6 +177,7 @@ Thêm một bệnh nhân mới
             },
             success: function(data) {
                 $("select[name='id_chuyenkhoa'").html('');
+                $('#id_chuyenkhoa').append('<option value="" selected="selected">--Chọn chuyên khoa---</option>');
                 $.each(data, function(key, value){
                     $("select[name='id_chuyenkhoa']").append(
                         "<option value=" + value.id + ">" + value.tenchuyenkhoa + "</option>"
@@ -223,6 +224,7 @@ Thêm một bệnh nhân mới
             },
             success: function(data) {
                 $("select[name='id_bacsi'").html('');
+               
                 $.each(data, function(key, value){
                     $("select[name='id_bacsi']").append(
                         "<option value=" + value.id + ">" + value.tenbacsi + "</option>"

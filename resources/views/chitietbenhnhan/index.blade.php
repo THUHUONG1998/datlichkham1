@@ -35,6 +35,7 @@ Chỉnh sửa
                             <span class="caption-subject font-green bold uppercase">Bảng bệnh nhân</span>
                         </div>
                     </div>
+                    @can('bs-cr')
                     <div class="portlet-body">
                         <div class="table-scrollable">
                             <table class="table table-hover">
@@ -59,7 +60,7 @@ Chỉnh sửa
                                             <td>{{$value->khunggio->khunggio}}</td>
                                             <td>    
                                                 <a class="btn btn-primary" href="{{ route('chitietkham',$value->id) }}">Chi tiết</a>
-                                                <a class="btn btn-success" href="{{ route('lichsu',$value->id) }}" >Lịch sử</a>
+                                                <a class="btn btn-success" href="{{ route('lichsu1',$value->benhnhan->id) }}" >Lịch sử</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -67,6 +68,7 @@ Chỉnh sửa
                             </table>
                         </div>
                     </div>
+                    @endcan
                 </div>
             </div>
                         </div>
@@ -83,10 +85,11 @@ Chỉnh sửa
                         @endif
                         <div class="caption">
                             <i class="icon-social-dribbble font-green"></i>
-                            <span class="caption-subject font-green bold uppercase">Simple Table</span>
+                            <span class="caption-subject font-green bold uppercase">Bảng bệnh nhân</span>
                         </div>
                       
                     </div>
+                    @can('bs-pn')
                     <div class="portlet-body">
                         <div class="table-scrollable">
                             <table class="table table-hover">
@@ -111,7 +114,7 @@ Chỉnh sửa
                                             <td>{{$value->khunggio->khunggio}}</td>
                                             <td>    
                                                 <a class="btn btn-primary" href="{{ route('chitietkham',$value->id) }}">Chi tiết</a>
-                                                <a class="btn btn-success" href="{{ route('lichsu',$value->id) }}" >Lịch sử</a>
+                                                <a class="btn btn-success" href="{{ route('lichsu1',$value->benhnhan->id) }}" >Lịch sử</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -119,6 +122,7 @@ Chỉnh sửa
                             </table>
                         </div>
                     </div>
+                    @endcan
                 </div>
             </div>
                     </div>

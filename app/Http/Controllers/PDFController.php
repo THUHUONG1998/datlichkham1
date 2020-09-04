@@ -29,10 +29,16 @@ class PDFController extends Controller
         $data[] = [
             'title'=>'Đơn thuốc',
             'hovaten' => $chitietkham->chitietbenhnhan->hovaten,
+            'ngaysinh' => $chitietkham->chitietbenhnhan->ngaysinh,
+            'ngaykham' => $chitietkham->chitietbenhnhan->ngaykham,
+            'gioitinh' =>$chitietkham->benhnhan->gioitinh,
             'donthuoc' => $chitietkham->donthuoc,
             'ngaytaikham'=>$ngaytaikham,
             'benhvien'=>$chitietkham->chitietbenhnhan->benhvien->tenbenhvien,
+            'diachi'=>$chitietkham->chitietbenhnhan->benhvien->diachi,
+            'sodienthoai'=>$chitietkham->chitietbenhnhan->benhvien->sodienthoai,
             'chuyenkhoa'=>$chitietkham->chitietbenhnhan->chuyenkhoa->tenchuyenkhoa,
+            'bacsi'=>$chitietkham->chitietbenhnhan->bacsi->tenbacsi,
         ];
         $pdf = PDF::loadView('myPDF', compact('data'))->download('donthuoc.pdf');
         

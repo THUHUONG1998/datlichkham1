@@ -6,11 +6,6 @@ Thêm một bệnh nhân mới
     <div class="page-content-wrapper">
                 <div class="page-content">
                     <div class="page-head">
-                        <div class="page-title">
-                            <h1>Form Layouts
-                                <small>form layouts</small>
-                            </h1>
-                        </div>
                         <div class="page-toolbar">
                             <div class="btn-group btn-theme-panel">
                                 <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">

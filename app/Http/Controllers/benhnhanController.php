@@ -163,6 +163,7 @@ class benhnhanController extends Controller
         $benhnhan = benhnhan::find($id);
         $input['ngaysinh']=date_format(date_create($request->ngaysinh), "Y-m-d");
         $benhnhan->update($input);
+        // $chitietbenhnhan->update($input);
         $benhnhan->save();
 
         return redirect()->route('benhnhan.index')
@@ -239,16 +240,23 @@ class benhnhanController extends Controller
             'id_khunggio'=>' Khung giờ'
 
         ]);
-
+        
         $input = $request->all();
         $input['ngaykham']=date_format(date_create($request->ngaykham), "Y-m-d");
+        $ctk = chitietbenhnhan::where('id_khunggio',$input['id_khunggio'])->where('ngaykham', $input['ngaykham'])->count();
+        $soluong_khunggio = khunggio::where('id', $input['id_khunggio'])->first();
+        if($ctk > $soluong_khunggio->gioihan)
+        {
+            return redirect()->back()->with('error', 'lỗi quá số lượng lượt đặt .....');
+        }
         $benhnhan = benhnhan::find($id);
         $input['id_benhnhan'] = $benhnhan->id;
-    //    $input['id_user'] = Auth::user()->id;
         
-        $chitietbenhnhan = chitietbenhnhan::create($input);
-        return redirect()->route('noidung', $chitietbenhnhan->id)
-                        ->with('success','Thêm bệnh nhân thành công');
+            
+            $chitietbenhnhan = chitietbenhnhan::create($input);
+            return redirect()->route('noidung', $chitietbenhnhan->id)
+                            ->with('success','Thêm bệnh nhân thành công');
+      
     }
     public function noidung($id){
         $benhvien = DB::table('benhvien')->get();
@@ -288,12 +296,22 @@ class benhnhanController extends Controller
        $benhnhan= benhnhan::find($id);
        $chitietkham = chitietkham::where('id_benhnhan', $benhnhan->id)->get();
       $lankham = $chitietkham->count();
-      if($lankham==0){
+      if($lankham==0 ){
           return redirect()->route('benhnhan.index')->with('error', 'Bệnh nhân này chưa có lịch sử khám');
       }
 
        return view('benhnhan.lichsu', compact('lankham', 'benhnhan', 'chitietkham'));
    }
+   public function lichsu1($id){
+    $benhnhan= benhnhan::find($id);
+    $chitietkham = chitietkham::where('id_benhnhan', $benhnhan->id)->get(); 
+   $lankham = $chitietkham->count();
+   if($lankham==0 ){
+       return redirect()->route('chitietbenhnhan.index')->with('error', 'Bệnh nhân này chưa có lịch sử khám');
+   }
+
+    return view('benhnhan.lichsu', compact('lankham', 'benhnhan', 'chitietkham'));
+}
     
    
 }

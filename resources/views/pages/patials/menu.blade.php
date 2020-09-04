@@ -86,7 +86,6 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                @can('chuyenkhoa-list')
                     <li class="nav-item  ">
                         <a href="{{route('chuyenkhoa.index')}}" class="nav-link ">
                             <span class="title">Bảng chuyên khoa
@@ -99,7 +98,6 @@
                             </span>
                         </a>
                     </li>
-                @endcan
                 </ul>
             </li>
             <li class="nav-item  ">
@@ -130,7 +128,7 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                @can('khunggio-list')
+              
                     <li class="nav-item  ">
                         <a href="{{route('khunggio.index')}}" class="nav-link ">
                             <span class="title">Bảng khung giờ</span>
@@ -141,7 +139,7 @@
                             <span class="title">Thêm khung giờ mới</span>
                         </a>
                     </li>
-                @endcan
+                
                 </ul>
             </li>
             <li class="nav-item  ">

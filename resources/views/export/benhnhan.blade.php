@@ -16,6 +16,7 @@
             <td>{{($value->gioitinh == 0)? 'Nam':'Nữ'}}</td>
             <td>{{ $value->sodienthoai }}</td>
             <td>{{ $value->email }}</td>
+            <td>{{$value->user->hovaten}}</td>
         </tr>
     @endforeach
     </tbody>

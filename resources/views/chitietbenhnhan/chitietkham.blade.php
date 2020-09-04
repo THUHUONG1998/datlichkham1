@@ -104,7 +104,7 @@ Chỉnh sửa
                                                     </div>
                                                     <div class="form-group">
                                                         <label><b>Đơn thuốc</b> </label>
-                                                        <textarea  rows="10" class="form-control"  name="donthuoc" value="" > </textarea>
+                                                        <textarea cols='60' class="form-control"  name="donthuoc" rows='8'></textarea>
                                                         @error('donthuoc')
                                                             <p style="color: red;"><i><b>{{$message}}</b></i></p>
                                                         @enderror
@@ -156,7 +156,7 @@ Chỉnh sửa
                 $.each(data, function(key, value){
                     $("select[name='id_chuyenkhoa']").append(
                         "<option value=" + value.id + ">" + value.tenchuyenkhoa + "</option>"
-                        $("#id_chuyenkhoa").val("1");
+                      
                     );
                 });
             }

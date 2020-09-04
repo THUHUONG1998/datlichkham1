@@ -92,7 +92,7 @@
                                                                         <h4 class="uppercase bold">
                                                                             <a href="javascript:;">Đơn thuốc</a>
                                                                         </h4>
-                                                                        <p>{{$value->donthuoc}}</p>
+                                                                        <?php echo $value->donthuoc ?></p>
                                                                     </div>
                                                                 </li>
                                                                 <li class="task-list-item done">
